@@ -1,0 +1,34 @@
+# Xcode
+## User settings and local state
+xcuserdata/
+*.xcuserdatad
+*.xcuserstate
+*.xcscmblueprint
+
+## Build generated
+build/
+DerivedData/
+*.moved-aside
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Tests (Excluded per request)
+Tests/
+*Test*
+*_test
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Icon?
+
+# Logs and scratch files
+*.log
+*.tmp

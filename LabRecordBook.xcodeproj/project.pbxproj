@@ -1,0 +1,676 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4675B7563174F0CB7B19E6C1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E953BAD210F59410C74AE1E5 /* AppCoordinator.swift */; };
+		44AF62D2AEAD11BFE08737D7 /* LabRecordBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF46CE2AD9E7F44A888C4A0 /* LabRecordBookApp.swift */; };
+		3184DCBF8D347B500562DCA3 /* AssignmentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC873D8A20F5E1265E8F1B9 /* AssignmentCard.swift */; };
+		00405DDE248DC3ECBE4312E8 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2706A2B8D96CDFB2BB7FEFF1 /* CustomTextField.swift */; };
+		A94A300025F8DF872DB1D9A4 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586E528E99B15A66513ACE76 /* EmptyStateView.swift */; };
+		4297DD28F609A9E41659F2DE /* ExperimentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88006E34268B8B9FFA9562C /* ExperimentCard.swift */; };
+		73A027630CFB9A5F173980A7 /* RoleBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891E454AAE6831B4224AE987 /* RoleBadge.swift */; };
+		59F91A6235E6A3C2B62C1A47 /* StatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6079531B383E3A84F0558A /* StatCard.swift */; };
+		22E66C1BF588F8A60D6CECF2 /* StatusBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4C88016562769494E85E10 /* StatusBadge.swift */; };
+		CE00A973DDBCD61669D9BC38 /* StudentSelectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3A762E827BE5729EA575FD /* StudentSelectionRow.swift */; };
+		ADEA65F937CAB994F42C6584 /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84674C36F00E6D1A86BD4198 /* UserRowView.swift */; };
+		559CFED8E95344407FBD5FFF /* AppDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA537956CDDFD3DD7AEA3A1 /* AppDataStore.swift */; };
+		201889CBCA691D9016759268 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D0AF381FA8862B30398060 /* SampleData.swift */; };
+		C91D44203589733B7F1D8950 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849EB97F1F749EE5B1843B5B /* Assignment.swift */; };
+		0043F374D9AB82DC56A675E3 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9941BE4D4FA9B032E11F3E9 /* Department.swift */; };
+		A86F38BAEC236059FC783085 /* Experiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD2755661D44A6002C4ABF1 /* Experiment.swift */; };
+		E0B8C73134183BBCC4C3D59A /* ExperimentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B3EF88BABAF0CEB78114E0 /* ExperimentStatus.swift */; };
+		FF6F300FF39A3988DDA80653 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97119BBC0112916E00CCCCB9 /* Subject.swift */; };
+		5CB471641F68F4B8DF92461A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DB35B153A7F770C8E29BA /* User.swift */; };
+		093D9484AEC90F5AA5CCDCF5 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED35992C4E1A7D3BB61D3B /* UserRole.swift */; };
+		922A884BE5DDF1CCDB288D43 /* Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D243E05EFB03676C9217C2A /* Verification.swift */; };
+		A4579C1C92FF03D1C7FA48CC /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45384DC4369A9E4AD8E158BF /* AnalyticsService.swift */; };
+		D5C3B1ECA1ECB6676B4BFCF4 /* AssignmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE0B538BE9C2BC8C9C0CB8 /* AssignmentService.swift */; };
+		F7B9C9D7812DC1D316EEE41C /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08D882FA428FEC52635F9D6 /* AuthService.swift */; };
+		495E1084A165DFD3DC6B2FD7 /* DepartmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E15D242FB992A79234ED7 /* DepartmentService.swift */; };
+		98E8BAC420228481131FD6F2 /* ExperimentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245D7DD8F5CF0C424A545BA3 /* ExperimentService.swift */; };
+		4C280A7BEF697695A735744F /* SubjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3396A2CC4D9C0737138EAF97 /* SubjectService.swift */; };
+		1D7634A079BE9D39AFCE060B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F820D09BEC475FF73E8408 /* UserService.swift */; };
+		76465D68B2CC3898424BDACE /* VerificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C852B1C0B1179535FA6D1F /* VerificationService.swift */; };
+		45527562E6070E6460F8A25D /* AdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02F046EF4796A39E7FF6E42 /* AdminViewModel.swift */; };
+		0CFE2DE94A72E81D5045CECA /* AssignExperimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DE9C48DFC52796BC472F2A /* AssignExperimentViewModel.swift */; };
+		CCC6970F20A594241E12B68F /* AssignedExperimentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453E20E98C7E29F39351DE79 /* AssignedExperimentsViewModel.swift */; };
+		6A9F26DC09F3B86C3BD77DA5 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C0FF8154FC470DC7C8F7A1 /* AuthViewModel.swift */; };
+		FB967EAD11E2B3FC35717B03 /* CreateExperimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2300F2A9034EACBB7BD004EA /* CreateExperimentViewModel.swift */; };
+		6437737F16C74FDBF176D4F3 /* CreateMentorExperimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28593830BE0DD81AA533636 /* CreateMentorExperimentViewModel.swift */; };
+		31A09A2B34C490D313599713 /* CreateUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5195CC6737875E71A70045 /* CreateUserViewModel.swift */; };
+		F45B7CAACDFCD96A13F77E94 /* DepartmentManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8748197F91CDC969A02D83 /* DepartmentManagementViewModel.swift */; };
+		F752B80FF621742F898BF11F /* EditExperimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E086315C40A6D58945DB0B2F /* EditExperimentViewModel.swift */; };
+		36CECC00F093944E251E5096 /* EditUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB087C77C4841A523F3DFA /* EditUserViewModel.swift */; };
+		C5EAA6B518690C4A5D32C7E3 /* ExperimentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBF2567E8CEEAECABC9E247 /* ExperimentDetailViewModel.swift */; };
+		0E4885B5B562367C1D470525 /* ExperimentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF63F7620A25287B74BF7B98 /* ExperimentListViewModel.swift */; };
+		17118E20B23F2FC1A6410472 /* ExperimentReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C494806A4C8FF69F4B0179F5 /* ExperimentReviewViewModel.swift */; };
+		96F7D143509BCE1B6A5C0FE9 /* ExperimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5D661CCD9528B722EA72A /* ExperimentViewModel.swift */; };
+		CE0C2324EA5670C19624DCA4 /* MentorAssignmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8109C97EE233CDB6ECEC3C /* MentorAssignmentViewModel.swift */; };
+		CD0CB5A835A51FF642F414A6 /* MentorReviewQueueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD25F0866083CEFD661107 /* MentorReviewQueueViewModel.swift */; };
+		CA8F54F4B9FFD9209EB814BF /* MentorStudentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480878C6B89512766A45DAA /* MentorStudentsViewModel.swift */; };
+		10269C01ED6631533F5BD473 /* MentorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679BFBFBD81FAE8BECD9DC2A /* MentorViewModel.swift */; };
+		DB2F49CD6E415F36662B8CC0 /* StudentAssignedExperimentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6DF26FD177C7D3B62B8A99C /* StudentAssignedExperimentsViewModel.swift */; };
+		4CE4CCF720B386B19F538155 /* StudentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520E9B5479BDFA9C7A2D9345 /* StudentViewModel.swift */; };
+		71A30CE4F287884801BCC946 /* SubmitExperimentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F8B4AAC9EFAFBD44B07177 /* SubmitExperimentViewModel.swift */; };
+		5710DD2312CCE928A3F1136D /* UserManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76D3B9F1683B6FF6519215D /* UserManagementViewModel.swift */; };
+		1187D41908F9A942E8DB4696 /* VerificationHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08CE6456E4AE3BE4A0F45DD /* VerificationHistoryViewModel.swift */; };
+		A8BCE6AC70682BE755F53820 /* AdminDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1EB30E8122433818B731F2 /* AdminDashboardView.swift */; };
+		B011123BD75C53925D70F0AB /* CreateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB478D25A113523B203133C5 /* CreateUserView.swift */; };
+		D56C62DEA49F7DBF1219A86E /* DepartmentManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0C63A3CC3A8CD8C594ADA7 /* DepartmentManagementView.swift */; };
+		7E9AF0B7DE3A7A6B65DB3C6F /* EditUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95803F85A7CF6D3D6DB1FF95 /* EditUserView.swift */; };
+		7BFA3ABC5C2A314FC14A5C5F /* MentorAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7109B0A0E375B846A9177 /* MentorAssignmentView.swift */; };
+		1E7FD809C8E2F974C9BFF684 /* UserManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427BFFD335446391C8B70AFF /* UserManagementView.swift */; };
+		19D15489FF69DBC216FDFF15 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C42BA079E35D8DC2AEA341 /* LoginView.swift */; };
+		EDC17A0CB24C1316BC877417 /* ExperimentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680502C33EEEC07CBD0951F /* ExperimentDetailView.swift */; };
+		82CE638130B473E8C3FEF64A /* ExperimentFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A1F9D9F0E1FBDF2A7E3468 /* ExperimentFilterView.swift */; };
+		6F67E660C5C0122957CCEF14 /* ExperimentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A34384D834C5269E47028CA /* ExperimentListView.swift */; };
+		A0FE0A93BAC37D5D1E5BCAAA /* AssignExperimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA9AC4B9EE6CCFAB28E53D /* AssignExperimentView.swift */; };
+		50850EB0FCE21360747408D5 /* AssignedExperimentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31CE5454CF8366F2B6339A5 /* AssignedExperimentsView.swift */; };
+		B11AF3FE3D60B08CD31B81DE /* AssignmentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE03C7A616054D98F09682 /* AssignmentDetailView.swift */; };
+		A51E1FE52DE496C3989BB41A /* CreateMentorExperimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998FD5CE5149A55749F5673 /* CreateMentorExperimentView.swift */; };
+		78BA3D9C2A3B7AA23F6CEC77 /* ExperimentReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CA655ECE973A117FBA64C2 /* ExperimentReviewView.swift */; };
+		5F3352FF08771361A03B379F /* MentorDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13FEE532D5642F37E907DE1 /* MentorDashboardView.swift */; };
+		472D79EABF73E9F17F5C7E17 /* MentorReviewQueueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4CA74118B8D4B6A01D8311 /* MentorReviewQueueView.swift */; };
+		36105A82B6914F30A105926F /* MentorStudentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D8CCF576F0CF7BB01A6D5 /* MentorStudentsView.swift */; };
+		FAAEBD26CFB501D1F93CBFB8 /* RejectExperimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08B565D93E092DFA0BFD946 /* RejectExperimentView.swift */; };
+		0EC66F0960186B79BDE8BB29 /* CreateExperimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8D30855E416B7AE1F6EF3 /* CreateExperimentView.swift */; };
+		7751986EEC10C07BC771B657 /* EditExperimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9D61473F5603D926217C0F /* EditExperimentView.swift */; };
+		FAFA535A0257601850EC35C7 /* ExperimentFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB562E881560D0A8296627B /* ExperimentFeedbackView.swift */; };
+		95599FB7089B62C34959A96C /* StudentAssignedExperimentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459C6FF946060011549661F /* StudentAssignedExperimentsView.swift */; };
+		5D321C119287E9FCE8E7AF4F /* StudentDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1ECEF7258FB8238B09C3B6 /* StudentDashboardView.swift */; };
+		7742DBD6D3376F6288424E8B /* StudentExperimentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E00DBC7FBDC9BA42BA8CC5 /* StudentExperimentListView.swift */; };
+		DB733A109D7513F7CA138B1F /* StudentVerificationHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983A47F6C900CFB5ECDCA75E /* StudentVerificationHistoryView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2678F494CC29BA8E2F0C4643 /* LabRecordBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LabRecordBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E953BAD210F59410C74AE1E5 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppCoordinator.swift"; sourceTree = "<group>"; };
+		8BF46CE2AD9E7F44A888C4A0 /* LabRecordBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LabRecordBookApp.swift"; sourceTree = "<group>"; };
+		8EC873D8A20F5E1265E8F1B9 /* AssignmentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssignmentCard.swift"; sourceTree = "<group>"; };
+		2706A2B8D96CDFB2BB7FEFF1 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField.swift"; sourceTree = "<group>"; };
+		586E528E99B15A66513ACE76 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmptyStateView.swift"; sourceTree = "<group>"; };
+		D88006E34268B8B9FFA9562C /* ExperimentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExperimentCard.swift"; sourceTree = "<group>"; };
+		891E454AAE6831B4224AE987 /* RoleBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoleBadge.swift"; sourceTree = "<group>"; };
+		5A6079531B383E3A84F0558A /* StatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StatCard.swift"; sourceTree = "<group>"; };
+		CA4C88016562769494E85E10 /* StatusBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StatusBadge.swift"; sourceTree = "<group>"; };
+		4D3A762E827BE5729EA575FD /* StudentSelectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentSelectionRow.swift"; sourceTree = "<group>"; };
+		84674C36F00E6D1A86BD4198 /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserRowView.swift"; sourceTree = "<group>"; };
+		0CA537956CDDFD3DD7AEA3A1 /* AppDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDataStore.swift"; sourceTree = "<group>"; };
+		37D0AF381FA8862B30398060 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SampleData.swift"; sourceTree = "<group>"; };
+		849EB97F1F749EE5B1843B5B /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assignment.swift"; sourceTree = "<group>"; };
+		B9941BE4D4FA9B032E11F3E9 /* Department.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Department.swift"; sourceTree = "<group>"; };
+		7AD2755661D44A6002C4ABF1 /* Experiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Experiment.swift"; sourceTree = "<group>"; };
+		03B3EF88BABAF0CEB78114E0 /* ExperimentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExperimentStatus.swift"; sourceTree = "<group>"; };
+		97119BBC0112916E00CCCCB9 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Subject.swift"; sourceTree = "<group>"; };
+		3D8DB35B153A7F770C8E29BA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User.swift"; sourceTree = "<group>"; };
+		17ED35992C4E1A7D3BB61D3B /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserRole.swift"; sourceTree = "<group>"; };
+		2D243E05EFB03676C9217C2A /* Verification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Verification.swift"; sourceTree = "<group>"; };
+		45384DC4369A9E4AD8E158BF /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnalyticsService.swift"; sourceTree = "<group>"; };
+		91AE0B538BE9C2BC8C9C0CB8 /* AssignmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssignmentService.swift"; sourceTree = "<group>"; };
+		C08D882FA428FEC52635F9D6 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthService.swift"; sourceTree = "<group>"; };
+		917E15D242FB992A79234ED7 /* DepartmentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DepartmentService.swift"; sourceTree = "<group>"; };
+		245D7DD8F5CF0C424A545BA3 /* ExperimentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExperimentService.swift"; sourceTree = "<group>"; };
+		3396A2CC4D9C0737138EAF97 /* SubjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubjectService.swift"; sourceTree = "<group>"; };
+		49F820D09BEC475FF73E8408 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserService.swift"; sourceTree = "<group>"; };
+		66C852B1C0B1179535FA6D1F /* VerificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VerificationService.swift"; sourceTree = "<group>"; };
+		B02F046EF4796A39E7FF6E42 /* AdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdminViewModel.swift"; sourceTree = "<group>"; };
+		86DE9C48DFC52796BC472F2A /* AssignExperimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssignExperimentViewModel.swift"; sourceTree = "<group>"; };
+		453E20E98C7E29F39351DE79 /* AssignedExperimentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssignedExperimentsViewModel.swift"; sourceTree = "<group>"; };
+		A3C0FF8154FC470DC7C8F7A1 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthViewModel.swift"; sourceTree = "<group>"; };
+		2300F2A9034EACBB7BD004EA /* CreateExperimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateExperimentViewModel.swift"; sourceTree = "<group>"; };
+		D28593830BE0DD81AA533636 /* CreateMentorExperimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateMentorExperimentViewModel.swift"; sourceTree = "<group>"; };
+		BD5195CC6737875E71A70045 /* CreateUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateUserViewModel.swift"; sourceTree = "<group>"; };
+		BB8748197F91CDC969A02D83 /* DepartmentManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DepartmentManagementViewModel.swift"; sourceTree = "<group>"; };
+		E086315C40A6D58945DB0B2F /* EditExperimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditExperimentViewModel.swift"; sourceTree = "<group>"; };
+		8DEB087C77C4841A523F3DFA /* EditUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditUserViewModel.swift"; sourceTree = "<group>"; };
+		0DBF2567E8CEEAECABC9E247 /* ExperimentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExperimentDetailViewModel.swift"; sourceTree = "<group>"; };
+		BF63F7620A25287B74BF7B98 /* ExperimentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExperimentListViewModel.swift"; sourceTree = "<group>"; };
+		C494806A4C8FF69F4B0179F5 /* ExperimentReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExperimentReviewViewModel.swift"; sourceTree = "<group>"; };
+		34C5D661CCD9528B722EA72A /* ExperimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExperimentViewModel.swift"; sourceTree = "<group>"; };
+		3C8109C97EE233CDB6ECEC3C /* MentorAssignmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorAssignmentViewModel.swift"; sourceTree = "<group>"; };
+		59AD25F0866083CEFD661107 /* MentorReviewQueueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorReviewQueueViewModel.swift"; sourceTree = "<group>"; };
+		C480878C6B89512766A45DAA /* MentorStudentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorStudentsViewModel.swift"; sourceTree = "<group>"; };
+		679BFBFBD81FAE8BECD9DC2A /* MentorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorViewModel.swift"; sourceTree = "<group>"; };
+		B6DF26FD177C7D3B62B8A99C /* StudentAssignedExperimentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentAssignedExperimentsViewModel.swift"; sourceTree = "<group>"; };
+		520E9B5479BDFA9C7A2D9345 /* StudentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentViewModel.swift"; sourceTree = "<group>"; };
+		83F8B4AAC9EFAFBD44B07177 /* SubmitExperimentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubmitExperimentViewModel.swift"; sourceTree = "<group>"; };
+		D76D3B9F1683B6FF6519215D /* UserManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserManagementViewModel.swift"; sourceTree = "<group>"; };
+		E08CE6456E4AE3BE4A0F45DD /* VerificationHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VerificationHistoryViewModel.swift"; sourceTree = "<group>"; };
+		EE1EB30E8122433818B731F2 /* AdminDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdminDashboardView.swift"; sourceTree = "<group>"; };
+		DB478D25A113523B203133C5 /* CreateUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateUserView.swift"; sourceTree = "<group>"; };
+		7D0C63A3CC3A8CD8C594ADA7 /* DepartmentManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DepartmentManagementView.swift"; sourceTree = "<group>"; };
+		95803F85A7CF6D3D6DB1FF95 /* EditUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditUserView.swift"; sourceTree = "<group>"; };
+		36B7109B0A0E375B846A9177 /* MentorAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorAssignmentView.swift"; sourceTree = "<group>"; };
+		427BFFD335446391C8B70AFF /* UserManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserManagementView.swift"; sourceTree = "<group>"; };
+		79C42BA079E35D8DC2AEA341 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginView.swift"; sourceTree = "<group>"; };
+		1680502C33EEEC07CBD0951F /* ExperimentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExperimentDetailView.swift"; sourceTree = "<group>"; };
+		E2A1F9D9F0E1FBDF2A7E3468 /* ExperimentFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExperimentFilterView.swift"; sourceTree = "<group>"; };
+		2A34384D834C5269E47028CA /* ExperimentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExperimentListView.swift"; sourceTree = "<group>"; };
+		83EA9AC4B9EE6CCFAB28E53D /* AssignExperimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssignExperimentView.swift"; sourceTree = "<group>"; };
+		B31CE5454CF8366F2B6339A5 /* AssignedExperimentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssignedExperimentsView.swift"; sourceTree = "<group>"; };
+		F3CE03C7A616054D98F09682 /* AssignmentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssignmentDetailView.swift"; sourceTree = "<group>"; };
+		7998FD5CE5149A55749F5673 /* CreateMentorExperimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateMentorExperimentView.swift"; sourceTree = "<group>"; };
+		92CA655ECE973A117FBA64C2 /* ExperimentReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExperimentReviewView.swift"; sourceTree = "<group>"; };
+		A13FEE532D5642F37E907DE1 /* MentorDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorDashboardView.swift"; sourceTree = "<group>"; };
+		BD4CA74118B8D4B6A01D8311 /* MentorReviewQueueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorReviewQueueView.swift"; sourceTree = "<group>"; };
+		874D8CCF576F0CF7BB01A6D5 /* MentorStudentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorStudentsView.swift"; sourceTree = "<group>"; };
+		D08B565D93E092DFA0BFD946 /* RejectExperimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RejectExperimentView.swift"; sourceTree = "<group>"; };
+		9BB8D30855E416B7AE1F6EF3 /* CreateExperimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateExperimentView.swift"; sourceTree = "<group>"; };
+		2F9D61473F5603D926217C0F /* EditExperimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditExperimentView.swift"; sourceTree = "<group>"; };
+		BAB562E881560D0A8296627B /* ExperimentFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExperimentFeedbackView.swift"; sourceTree = "<group>"; };
+		8459C6FF946060011549661F /* StudentAssignedExperimentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentAssignedExperimentsView.swift"; sourceTree = "<group>"; };
+		FB1ECEF7258FB8238B09C3B6 /* StudentDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentDashboardView.swift"; sourceTree = "<group>"; };
+		B5E00DBC7FBDC9BA42BA8CC5 /* StudentExperimentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentExperimentListView.swift"; sourceTree = "<group>"; };
+		983A47F6C900CFB5ECDCA75E /* StudentVerificationHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentVerificationHistoryView.swift"; sourceTree = "<group>"; };
+		AE92CA71109DCE34A495760D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A9E872B0C4F3AB11D258C39F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A85897F1A32FE9B91C081CD = {
+			isa = PBXGroup;
+			children = (
+				5019624759FEFB87A495EAB9 /* LabRecordBook */,
+				B88D7E26791946AEFDCC8BB7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B88D7E26791946AEFDCC8BB7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2678F494CC29BA8E2F0C4643 /* LabRecordBook.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5019624759FEFB87A495EAB9 /* LabRecordBook */ = {
+			isa = PBXGroup;
+			children = (
+				D6BCA2C887791F02D9B85FFE /* App */,
+				719D42C17C73D0CB0E911A41 /* Components */,
+				9DE97B1AA2578FCB2400007C /* Data */,
+				AA21C8AC15C6FB7444A5F13F /* Models */,
+				1C52FBFFEF6C26D2EDD3BB57 /* Services */,
+				8C5AB68D05D2A8113475EB1A /* ViewModels */,
+				310340C7160034BFE01AFEDE /* Views */,
+				AE92CA71109DCE34A495760D /* Info.plist */,
+			);
+			path = "LabRecordBook";
+			sourceTree = "<group>";
+		};
+		D6BCA2C887791F02D9B85FFE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E953BAD210F59410C74AE1E5 /* AppCoordinator.swift */,
+				8BF46CE2AD9E7F44A888C4A0 /* LabRecordBookApp.swift */,
+			);
+			path = "App";
+			sourceTree = "<group>";
+		};
+		719D42C17C73D0CB0E911A41 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8EC873D8A20F5E1265E8F1B9 /* AssignmentCard.swift */,
+				2706A2B8D96CDFB2BB7FEFF1 /* CustomTextField.swift */,
+				586E528E99B15A66513ACE76 /* EmptyStateView.swift */,
+				D88006E34268B8B9FFA9562C /* ExperimentCard.swift */,
+				891E454AAE6831B4224AE987 /* RoleBadge.swift */,
+				5A6079531B383E3A84F0558A /* StatCard.swift */,
+				CA4C88016562769494E85E10 /* StatusBadge.swift */,
+				4D3A762E827BE5729EA575FD /* StudentSelectionRow.swift */,
+				84674C36F00E6D1A86BD4198 /* UserRowView.swift */,
+			);
+			path = "Components";
+			sourceTree = "<group>";
+		};
+		9DE97B1AA2578FCB2400007C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0CA537956CDDFD3DD7AEA3A1 /* AppDataStore.swift */,
+				37D0AF381FA8862B30398060 /* SampleData.swift */,
+			);
+			path = "Data";
+			sourceTree = "<group>";
+		};
+		AA21C8AC15C6FB7444A5F13F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				849EB97F1F749EE5B1843B5B /* Assignment.swift */,
+				B9941BE4D4FA9B032E11F3E9 /* Department.swift */,
+				7AD2755661D44A6002C4ABF1 /* Experiment.swift */,
+				03B3EF88BABAF0CEB78114E0 /* ExperimentStatus.swift */,
+				97119BBC0112916E00CCCCB9 /* Subject.swift */,
+				3D8DB35B153A7F770C8E29BA /* User.swift */,
+				17ED35992C4E1A7D3BB61D3B /* UserRole.swift */,
+				2D243E05EFB03676C9217C2A /* Verification.swift */,
+			);
+			path = "Models";
+			sourceTree = "<group>";
+		};
+		1C52FBFFEF6C26D2EDD3BB57 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				45384DC4369A9E4AD8E158BF /* AnalyticsService.swift */,
+				91AE0B538BE9C2BC8C9C0CB8 /* AssignmentService.swift */,
+				C08D882FA428FEC52635F9D6 /* AuthService.swift */,
+				917E15D242FB992A79234ED7 /* DepartmentService.swift */,
+				245D7DD8F5CF0C424A545BA3 /* ExperimentService.swift */,
+				3396A2CC4D9C0737138EAF97 /* SubjectService.swift */,
+				49F820D09BEC475FF73E8408 /* UserService.swift */,
+				66C852B1C0B1179535FA6D1F /* VerificationService.swift */,
+			);
+			path = "Services";
+			sourceTree = "<group>";
+		};
+		8C5AB68D05D2A8113475EB1A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B02F046EF4796A39E7FF6E42 /* AdminViewModel.swift */,
+				86DE9C48DFC52796BC472F2A /* AssignExperimentViewModel.swift */,
+				453E20E98C7E29F39351DE79 /* AssignedExperimentsViewModel.swift */,
+				A3C0FF8154FC470DC7C8F7A1 /* AuthViewModel.swift */,
+				2300F2A9034EACBB7BD004EA /* CreateExperimentViewModel.swift */,
+				D28593830BE0DD81AA533636 /* CreateMentorExperimentViewModel.swift */,
+				BD5195CC6737875E71A70045 /* CreateUserViewModel.swift */,
+				BB8748197F91CDC969A02D83 /* DepartmentManagementViewModel.swift */,
+				E086315C40A6D58945DB0B2F /* EditExperimentViewModel.swift */,
+				8DEB087C77C4841A523F3DFA /* EditUserViewModel.swift */,
+				0DBF2567E8CEEAECABC9E247 /* ExperimentDetailViewModel.swift */,
+				BF63F7620A25287B74BF7B98 /* ExperimentListViewModel.swift */,
+				C494806A4C8FF69F4B0179F5 /* ExperimentReviewViewModel.swift */,
+				34C5D661CCD9528B722EA72A /* ExperimentViewModel.swift */,
+				3C8109C97EE233CDB6ECEC3C /* MentorAssignmentViewModel.swift */,
+				59AD25F0866083CEFD661107 /* MentorReviewQueueViewModel.swift */,
+				C480878C6B89512766A45DAA /* MentorStudentsViewModel.swift */,
+				679BFBFBD81FAE8BECD9DC2A /* MentorViewModel.swift */,
+				B6DF26FD177C7D3B62B8A99C /* StudentAssignedExperimentsViewModel.swift */,
+				520E9B5479BDFA9C7A2D9345 /* StudentViewModel.swift */,
+				83F8B4AAC9EFAFBD44B07177 /* SubmitExperimentViewModel.swift */,
+				D76D3B9F1683B6FF6519215D /* UserManagementViewModel.swift */,
+				E08CE6456E4AE3BE4A0F45DD /* VerificationHistoryViewModel.swift */,
+			);
+			path = "ViewModels";
+			sourceTree = "<group>";
+		};
+		310340C7160034BFE01AFEDE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7F914A95C7F7788B7488AEAA /* Admin */,
+				F7277294A66F780CB8E54C03 /* Authentication */,
+				E7F1B2DC9E6C0089E8CA1991 /* Experiments */,
+				2F503F9B529E7A386AA5D95C /* Mentor */,
+				8357EDD82DB26A1E3772769D /* Student */,
+			);
+			path = "Views";
+			sourceTree = "<group>";
+		};
+		7F914A95C7F7788B7488AEAA /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				EE1EB30E8122433818B731F2 /* AdminDashboardView.swift */,
+				DB478D25A113523B203133C5 /* CreateUserView.swift */,
+				7D0C63A3CC3A8CD8C594ADA7 /* DepartmentManagementView.swift */,
+				95803F85A7CF6D3D6DB1FF95 /* EditUserView.swift */,
+				36B7109B0A0E375B846A9177 /* MentorAssignmentView.swift */,
+				427BFFD335446391C8B70AFF /* UserManagementView.swift */,
+			);
+			path = "Admin";
+			sourceTree = "<group>";
+		};
+		F7277294A66F780CB8E54C03 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				79C42BA079E35D8DC2AEA341 /* LoginView.swift */,
+			);
+			path = "Authentication";
+			sourceTree = "<group>";
+		};
+		E7F1B2DC9E6C0089E8CA1991 /* Experiments */ = {
+			isa = PBXGroup;
+			children = (
+				1680502C33EEEC07CBD0951F /* ExperimentDetailView.swift */,
+				E2A1F9D9F0E1FBDF2A7E3468 /* ExperimentFilterView.swift */,
+				2A34384D834C5269E47028CA /* ExperimentListView.swift */,
+			);
+			path = "Experiments";
+			sourceTree = "<group>";
+		};
+		2F503F9B529E7A386AA5D95C /* Mentor */ = {
+			isa = PBXGroup;
+			children = (
+				83EA9AC4B9EE6CCFAB28E53D /* AssignExperimentView.swift */,
+				B31CE5454CF8366F2B6339A5 /* AssignedExperimentsView.swift */,
+				F3CE03C7A616054D98F09682 /* AssignmentDetailView.swift */,
+				7998FD5CE5149A55749F5673 /* CreateMentorExperimentView.swift */,
+				92CA655ECE973A117FBA64C2 /* ExperimentReviewView.swift */,
+				A13FEE532D5642F37E907DE1 /* MentorDashboardView.swift */,
+				BD4CA74118B8D4B6A01D8311 /* MentorReviewQueueView.swift */,
+				874D8CCF576F0CF7BB01A6D5 /* MentorStudentsView.swift */,
+				D08B565D93E092DFA0BFD946 /* RejectExperimentView.swift */,
+			);
+			path = "Mentor";
+			sourceTree = "<group>";
+		};
+		8357EDD82DB26A1E3772769D /* Student */ = {
+			isa = PBXGroup;
+			children = (
+				9BB8D30855E416B7AE1F6EF3 /* CreateExperimentView.swift */,
+				2F9D61473F5603D926217C0F /* EditExperimentView.swift */,
+				BAB562E881560D0A8296627B /* ExperimentFeedbackView.swift */,
+				8459C6FF946060011549661F /* StudentAssignedExperimentsView.swift */,
+				FB1ECEF7258FB8238B09C3B6 /* StudentDashboardView.swift */,
+				B5E00DBC7FBDC9BA42BA8CC5 /* StudentExperimentListView.swift */,
+				983A47F6C900CFB5ECDCA75E /* StudentVerificationHistoryView.swift */,
+			);
+			path = "Student";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		730950AD798A77AD508AA9E2 /* LabRecordBook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4977ED30DDFEF48DA821F2BF /* Build configuration list for PBXNativeTarget "LabRecordBook" */;
+			buildPhases = (
+				7EE609159AC086BAB15FF998 /* Sources */,
+				A9E872B0C4F3AB11D258C39F /* Frameworks */,
+				A2892AFC2D88060C0AA91373 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LabRecordBook;
+			productName = LabRecordBook;
+			productReference = 2678F494CC29BA8E2F0C4643 /* LabRecordBook.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1781F676DEDF5767F3243DB0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					730950AD798A77AD508AA9E2 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 9B7A4A2B574091F58331C211 /* Build configuration list for PBXProject "LabRecordBook" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0A85897F1A32FE9B91C081CD;
+			productRefGroup = B88D7E26791946AEFDCC8BB7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				730950AD798A77AD508AA9E2 /* LabRecordBook */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A2892AFC2D88060C0AA91373 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7EE609159AC086BAB15FF998 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4675B7563174F0CB7B19E6C1 /* AppCoordinator.swift in Sources */,
+				44AF62D2AEAD11BFE08737D7 /* LabRecordBookApp.swift in Sources */,
+				3184DCBF8D347B500562DCA3 /* AssignmentCard.swift in Sources */,
+				00405DDE248DC3ECBE4312E8 /* CustomTextField.swift in Sources */,
+				A94A300025F8DF872DB1D9A4 /* EmptyStateView.swift in Sources */,
+				4297DD28F609A9E41659F2DE /* ExperimentCard.swift in Sources */,
+				73A027630CFB9A5F173980A7 /* RoleBadge.swift in Sources */,
+				59F91A6235E6A3C2B62C1A47 /* StatCard.swift in Sources */,
+				22E66C1BF588F8A60D6CECF2 /* StatusBadge.swift in Sources */,
+				CE00A973DDBCD61669D9BC38 /* StudentSelectionRow.swift in Sources */,
+				ADEA65F937CAB994F42C6584 /* UserRowView.swift in Sources */,
+				559CFED8E95344407FBD5FFF /* AppDataStore.swift in Sources */,
+				201889CBCA691D9016759268 /* SampleData.swift in Sources */,
+				C91D44203589733B7F1D8950 /* Assignment.swift in Sources */,
+				0043F374D9AB82DC56A675E3 /* Department.swift in Sources */,
+				A86F38BAEC236059FC783085 /* Experiment.swift in Sources */,
+				E0B8C73134183BBCC4C3D59A /* ExperimentStatus.swift in Sources */,
+				FF6F300FF39A3988DDA80653 /* Subject.swift in Sources */,
+				5CB471641F68F4B8DF92461A /* User.swift in Sources */,
+				093D9484AEC90F5AA5CCDCF5 /* UserRole.swift in Sources */,
+				922A884BE5DDF1CCDB288D43 /* Verification.swift in Sources */,
+				A4579C1C92FF03D1C7FA48CC /* AnalyticsService.swift in Sources */,
+				D5C3B1ECA1ECB6676B4BFCF4 /* AssignmentService.swift in Sources */,
+				F7B9C9D7812DC1D316EEE41C /* AuthService.swift in Sources */,
+				495E1084A165DFD3DC6B2FD7 /* DepartmentService.swift in Sources */,
+				98E8BAC420228481131FD6F2 /* ExperimentService.swift in Sources */,
+				4C280A7BEF697695A735744F /* SubjectService.swift in Sources */,
+				1D7634A079BE9D39AFCE060B /* UserService.swift in Sources */,
+				76465D68B2CC3898424BDACE /* VerificationService.swift in Sources */,
+				45527562E6070E6460F8A25D /* AdminViewModel.swift in Sources */,
+				0CFE2DE94A72E81D5045CECA /* AssignExperimentViewModel.swift in Sources */,
+				CCC6970F20A594241E12B68F /* AssignedExperimentsViewModel.swift in Sources */,
+				6A9F26DC09F3B86C3BD77DA5 /* AuthViewModel.swift in Sources */,
+				FB967EAD11E2B3FC35717B03 /* CreateExperimentViewModel.swift in Sources */,
+				6437737F16C74FDBF176D4F3 /* CreateMentorExperimentViewModel.swift in Sources */,
+				31A09A2B34C490D313599713 /* CreateUserViewModel.swift in Sources */,
+				F45B7CAACDFCD96A13F77E94 /* DepartmentManagementViewModel.swift in Sources */,
+				F752B80FF621742F898BF11F /* EditExperimentViewModel.swift in Sources */,
+				36CECC00F093944E251E5096 /* EditUserViewModel.swift in Sources */,
+				C5EAA6B518690C4A5D32C7E3 /* ExperimentDetailViewModel.swift in Sources */,
+				0E4885B5B562367C1D470525 /* ExperimentListViewModel.swift in Sources */,
+				17118E20B23F2FC1A6410472 /* ExperimentReviewViewModel.swift in Sources */,
+				96F7D143509BCE1B6A5C0FE9 /* ExperimentViewModel.swift in Sources */,
+				CE0C2324EA5670C19624DCA4 /* MentorAssignmentViewModel.swift in Sources */,
+				CD0CB5A835A51FF642F414A6 /* MentorReviewQueueViewModel.swift in Sources */,
+				CA8F54F4B9FFD9209EB814BF /* MentorStudentsViewModel.swift in Sources */,
+				10269C01ED6631533F5BD473 /* MentorViewModel.swift in Sources */,
+				DB2F49CD6E415F36662B8CC0 /* StudentAssignedExperimentsViewModel.swift in Sources */,
+				4CE4CCF720B386B19F538155 /* StudentViewModel.swift in Sources */,
+				71A30CE4F287884801BCC946 /* SubmitExperimentViewModel.swift in Sources */,
+				5710DD2312CCE928A3F1136D /* UserManagementViewModel.swift in Sources */,
+				1187D41908F9A942E8DB4696 /* VerificationHistoryViewModel.swift in Sources */,
+				A8BCE6AC70682BE755F53820 /* AdminDashboardView.swift in Sources */,
+				B011123BD75C53925D70F0AB /* CreateUserView.swift in Sources */,
+				D56C62DEA49F7DBF1219A86E /* DepartmentManagementView.swift in Sources */,
+				7E9AF0B7DE3A7A6B65DB3C6F /* EditUserView.swift in Sources */,
+				7BFA3ABC5C2A314FC14A5C5F /* MentorAssignmentView.swift in Sources */,
+				1E7FD809C8E2F974C9BFF684 /* UserManagementView.swift in Sources */,
+				19D15489FF69DBC216FDFF15 /* LoginView.swift in Sources */,
+				EDC17A0CB24C1316BC877417 /* ExperimentDetailView.swift in Sources */,
+				82CE638130B473E8C3FEF64A /* ExperimentFilterView.swift in Sources */,
+				6F67E660C5C0122957CCEF14 /* ExperimentListView.swift in Sources */,
+				A0FE0A93BAC37D5D1E5BCAAA /* AssignExperimentView.swift in Sources */,
+				50850EB0FCE21360747408D5 /* AssignedExperimentsView.swift in Sources */,
+				B11AF3FE3D60B08CD31B81DE /* AssignmentDetailView.swift in Sources */,
+				A51E1FE52DE496C3989BB41A /* CreateMentorExperimentView.swift in Sources */,
+				78BA3D9C2A3B7AA23F6CEC77 /* ExperimentReviewView.swift in Sources */,
+				5F3352FF08771361A03B379F /* MentorDashboardView.swift in Sources */,
+				472D79EABF73E9F17F5C7E17 /* MentorReviewQueueView.swift in Sources */,
+				36105A82B6914F30A105926F /* MentorStudentsView.swift in Sources */,
+				FAAEBD26CFB501D1F93CBFB8 /* RejectExperimentView.swift in Sources */,
+				0EC66F0960186B79BDE8BB29 /* CreateExperimentView.swift in Sources */,
+				7751986EEC10C07BC771B657 /* EditExperimentView.swift in Sources */,
+				FAFA535A0257601850EC35C7 /* ExperimentFeedbackView.swift in Sources */,
+				95599FB7089B62C34959A96C /* StudentAssignedExperimentsView.swift in Sources */,
+				5D321C119287E9FCE8E7AF4F /* StudentDashboardView.swift in Sources */,
+				7742DBD6D3376F6288424E8B /* StudentExperimentListView.swift in Sources */,
+				DB733A109D7513F7CA138B1F /* StudentVerificationHistoryView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2E4E6CCF5D6EF365E5C97DDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7BE66DFF231D03044D5C4C4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		75C43E90EFD001E36BF60147 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LabRecordBook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kernelknights.LabRecordBook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				OTHER_SWIFT_FLAGS = "-disable-sandbox";
+				CLANG_MODULE_CACHE_PATH = "/tmp/ModuleCache";
+				UISUPPORTED_INTERFACE_ORIENTATIONS = UIInterfaceOrientationPortrait;
+			};
+			name = Debug;
+		};
+		763EE87794306FA0DE784359 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LabRecordBook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kernelknights.LabRecordBook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				OTHER_SWIFT_FLAGS = "-disable-sandbox";
+				CLANG_MODULE_CACHE_PATH = "/tmp/ModuleCache";
+				UISUPPORTED_INTERFACE_ORIENTATIONS = UIInterfaceOrientationPortrait;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9B7A4A2B574091F58331C211 /* Build configuration list for PBXProject "LabRecordBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E4E6CCF5D6EF365E5C97DDB /* Debug */,
+				7BE66DFF231D03044D5C4C4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4977ED30DDFEF48DA821F2BF /* Build configuration list for PBXNativeTarget "LabRecordBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75C43E90EFD001E36BF60147 /* Debug */,
+				763EE87794306FA0DE784359 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 1781F676DEDF5767F3243DB0 /* Project object */;
+}
