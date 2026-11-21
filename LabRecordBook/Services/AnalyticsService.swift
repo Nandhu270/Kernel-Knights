@@ -87,7 +87,138 @@ public struct MentorWorkloadSummary: Identifiable, Equatable {
     }
 }
 
-/// Service calculating dynamic analytics, progress tracking, and statistical aggregations.
+/// Structured report data for a student's lab record book
+public struct StudentReportData: Equatable {
+    public let student: User
+    public let mentor: User?
+    public let totalExperiments: Int
+    public let inProgressCount: Int
+    public let submittedCount: Int
+    public let verifiedCount: Int
+    public let rejectedCount: Int
+    public let completionPercentage: Double
+    public let subjectProgress: [SubjectProgress]
+    public let experiments: [Experiment]
+    public let generatedDate: Date
+    
+    public init(
+        student: User,
+        mentor: User?,
+        totalExperiments: Int,
+        inProgressCount: Int,
+        submittedCount: Int,
+        verifiedCount: Int,
+        rejectedCount: Int,
+        completionPercentage: Double,
+        subjectProgress: [SubjectProgress],
+        experiments: [Experiment],
+        generatedDate: Date = Date()
+    ) {
+        self.student = student
+        self.mentor = mentor
+        self.totalExperiments = totalExperiments
+        self.inProgressCount = inProgressCount
+        self.submittedCount = submittedCount
+        self.verifiedCount = verifiedCount
+        self.rejectedCount = rejectedCount
+        self.completionPercentage = completionPercentage
+        self.subjectProgress = subjectProgress
+        self.experiments = experiments
+        self.generatedDate = generatedDate
+    }
+}
+
+/// Structured report data for a mentor's supervised cohort
+public struct MentorReportData: Equatable {
+    public let mentor: User
+    public let assignedStudents: [User]
+    public let totalAssignedExperimentsCount: Int
+    public let pendingReviewsCount: Int
+    public let verifiedCount: Int
+    public let rejectedCount: Int
+    public let studentSummaries: [StudentProgressSummary]
+    public let generatedDate: Date
+    
+    public init(
+        mentor: User,
+        assignedStudents: [User],
+        totalAssignedExperimentsCount: Int,
+        pendingReviewsCount: Int,
+        verifiedCount: Int,
+        rejectedCount: Int,
+        studentSummaries: [StudentProgressSummary],
+        generatedDate: Date = Date()
+    ) {
+        self.mentor = mentor
+        self.assignedStudents = assignedStudents
+        self.totalAssignedExperimentsCount = totalAssignedExperimentsCount
+        self.pendingReviewsCount = pendingReviewsCount
+        self.verifiedCount = verifiedCount
+        self.rejectedCount = rejectedCount
+        self.studentSummaries = studentSummaries
+        self.generatedDate = generatedDate
+    }
+}
+
+/// Structured report data for administrator institutional audit
+public struct AdminReportData: Equatable {
+    public let activeStudentsCount: Int
+    public let activeMentorsCount: Int
+    public let totalExperimentsCount: Int
+    public let verifiedCount: Int
+    public let pendingReviewCount: Int
+    public let rejectedCount: Int
+    public let overallCompletionPercentage: Double
+    public let studentSummaries: [StudentProgressSummary]
+    public let mentorWorkloads: [MentorWorkloadSummary]
+    public let subjectStatistics: [SubjectProgress]
+    public let generatedDate: Date
+    
+    public init(
+        activeStudentsCount: Int,
+        activeMentorsCount: Int,
+        totalExperimentsCount: Int,
+        verifiedCount: Int,
+        pendingReviewCount: Int,
+        rejectedCount: Int,
+        overallCompletionPercentage: Double,
+        studentSummaries: [StudentProgressSummary],
+        mentorWorkloads: [MentorWorkloadSummary],
+        subjectStatistics: [SubjectProgress],
+        generatedDate: Date = Date()
+    ) {
+        self.activeStudentsCount = activeStudentsCount
+        self.activeMentorsCount = activeMentorsCount
+        self.totalExperimentsCount = totalExperimentsCount
+        self.verifiedCount = verifiedCount
+        self.pendingReviewCount = pendingReviewCount
+        self.rejectedCount = rejectedCount
+        self.overallCompletionPercentage = overallCompletionPercentage
+        self.studentSummaries = studentSummaries
+        self.mentorWorkloads = mentorWorkloads
+        self.subjectStatistics = subjectStatistics
+        self.generatedDate = generatedDate
+    }
+}
+
+public enum AnalyticsServiceError: LocalizedError {
+    case unauthorized(String)
+    case studentNotFound
+    case mentorNotFound
+    
+    public var errorDescription: String? {
+        switch self {
+        case .unauthorized(let reason):
+            return "Unauthorized access: \(reason)"
+        case .studentNotFound:
+            return "Student account could not be found."
+        case .mentorNotFound:
+            return "Mentor account could not be found."
+        }
+    }
+}
+
+/// Service calculating dynamic analytics, progress tracking, and statistical aggregations with permission enforcement.
 @Observable
 public final class AnalyticsService {
     public let dataStore: AppDataStore
@@ -98,7 +229,7 @@ public final class AnalyticsService {
     
     // MARK: - Student Analytics
     
-    /// Returns all experiments belonging to a student (excluding mentor master templates)
+    /// Returns all experiments belonging to a student (strictly excluding mentor master templates where studentId is nil)
     public func getStudentExperiments(for studentId: UUID) -> [Experiment] {
         dataStore.experiments.filter { $0.studentId == studentId }
     }
@@ -162,10 +293,10 @@ public final class AnalyticsService {
         }
     }
     
-    /// Returns supervised students requiring mentor attention (e.g. have rejected work needing review or pending submissions)
+    /// Returns supervised students requiring mentor attention (e.g. have rejected work needing correction or pending submissions)
     public func getStudentsRequiringAttention(for mentorId: UUID) -> [User] {
         let progressList = getMentorStudentProgress(for: mentorId)
-        let attentionStudentIds = Set(progressList.filter { $0.requiresAttention || $0.pendingCount > 0 }.map { $0.student.id })
+        let attentionStudentIds = Set(progressList.filter { $0.requiresAttention }.map { $0.student.id })
         return dataStore.users.filter { attentionStudentIds.contains($0.id) }
     }
     
@@ -181,7 +312,7 @@ public final class AnalyticsService {
         dataStore.users.filter { $0.role == .mentor && $0.isActive }.count
     }
     
-    /// Total student experiments (excluding master templates)
+    /// Total student experiments (strictly excluding mentor master templates where studentId is nil)
     public var totalStudentExperiments: [Experiment] {
         dataStore.experiments.filter { $0.studentId != nil }
     }
@@ -202,6 +333,25 @@ public final class AnalyticsService {
     public var systemCompletionPercentage: Double {
         guard !totalStudentExperiments.isEmpty else { return 0.0 }
         return (Double(totalVerifiedCount) / Double(totalStudentExperiments.count)) * 100.0
+    }
+    
+    /// System-wide student progress summaries (for active students)
+    public func getAllStudentProgressSummaries() -> [StudentProgressSummary] {
+        let students = dataStore.users.filter { $0.role == .student && $0.isActive }
+        return students.map { student in
+            let exps = getStudentExperiments(for: student.id)
+            let verified = exps.filter { $0.status == .verified }.count
+            let rejected = exps.filter { $0.status == .rejected }.count
+            let pending = exps.filter { $0.status != .verified && $0.status != .rejected }.count
+            
+            return StudentProgressSummary(
+                student: student,
+                totalAssigned: exps.count,
+                verifiedCount: verified,
+                pendingCount: pending,
+                rejectedCount: rejected
+            )
+        }
     }
     
     /// System-wide mentor workload overview
@@ -248,5 +398,124 @@ public final class AnalyticsService {
                 rejectedExperiments: rejected
             )
         }
+    }
+    
+    // MARK: - Permission-Enforced Report Queries
+    
+    /// Generates structured student report data after enforcing permission boundaries:
+    /// - Student: Can access only their own report data
+    /// - Mentor: Can access report only if the student is actively assigned to them
+    /// - Admin: Full authorized access
+    public func getStudentReportData(studentId: UUID, requestingUser: User) throws -> StudentReportData {
+        guard let student = dataStore.user(byId: studentId), student.role == .student else {
+            throw AnalyticsServiceError.studentNotFound
+        }
+        
+        // Permission check
+        switch requestingUser.role {
+        case .student:
+            guard requestingUser.id == studentId else {
+                throw AnalyticsServiceError.unauthorized("Students may only access their own lab report records.")
+            }
+        case .mentor:
+            guard student.assignedMentorId == requestingUser.id else {
+                throw AnalyticsServiceError.unauthorized("Mentors may only access reports for students assigned to them.")
+            }
+        case .admin:
+            break
+        }
+        
+        let exps = getStudentExperiments(for: studentId).sorted {
+            $0.experimentNumber.localizedStandardCompare($1.experimentNumber) == .orderedAscending
+        }
+        let verifiedCount = exps.filter { $0.status == .verified }.count
+        let rejectedCount = exps.filter { $0.status == .rejected }.count
+        let submittedCount = exps.filter { $0.status == .submitted }.count
+        let inProgressCount = exps.filter { $0.status == .inProgress || $0.status == .pending || $0.status == .assigned }.count
+        let completionPercentage = getStudentCompletionPercentage(for: studentId)
+        let subjectProgress = getSubjectProgress(for: studentId)
+        let mentor = student.assignedMentorId.flatMap { dataStore.user(byId: $0) }
+        
+        return StudentReportData(
+            student: student,
+            mentor: mentor,
+            totalExperiments: exps.count,
+            inProgressCount: inProgressCount,
+            submittedCount: submittedCount,
+            verifiedCount: verifiedCount,
+            rejectedCount: rejectedCount,
+            completionPercentage: completionPercentage,
+            subjectProgress: subjectProgress,
+            experiments: exps,
+            generatedDate: Date()
+        )
+    }
+    
+    /// Generates structured mentor report data after enforcing permission boundaries:
+    /// - Mentor: Can access only their own mentor report
+    /// - Admin: Full authorized access
+    /// - Student: Strictly unauthorized
+    public func getMentorReportData(mentorId: UUID, requestingUser: User) throws -> MentorReportData {
+        guard let mentor = dataStore.user(byId: mentorId), mentor.role == .mentor else {
+            throw AnalyticsServiceError.mentorNotFound
+        }
+        
+        // Permission check
+        switch requestingUser.role {
+        case .student:
+            throw AnalyticsServiceError.unauthorized("Students do not have permission to view mentor reports.")
+        case .mentor:
+            guard requestingUser.id == mentorId else {
+                throw AnalyticsServiceError.unauthorized("Mentors may only access their own supervisory report.")
+            }
+        case .admin:
+            break
+        }
+        
+        let assignedStudents = getAssignedStudents(for: mentorId)
+        let studentSummaries = getMentorStudentProgress(for: mentorId)
+        let totalAssigned = dataStore.assignments.filter { $0.mentorId == mentorId }.count
+        
+        let supervisedExps = dataStore.experiments.filter { exp in
+            guard let sid = exp.studentId else { return false }
+            return assignedStudents.contains { $0.id == sid }
+        }
+        let pendingReviews = supervisedExps.filter { $0.status == .submitted }.count
+        let verifiedCount = supervisedExps.filter { $0.status == .verified }.count
+        let rejectedCount = supervisedExps.filter { $0.status == .rejected }.count
+        
+        return MentorReportData(
+            mentor: mentor,
+            assignedStudents: assignedStudents,
+            totalAssignedExperimentsCount: totalAssigned,
+            pendingReviewsCount: pendingReviews,
+            verifiedCount: verifiedCount,
+            rejectedCount: rejectedCount,
+            studentSummaries: studentSummaries,
+            generatedDate: Date()
+        )
+    }
+    
+    /// Generates structured admin system report data:
+    /// - Admin: Only administrators can access
+    /// - Student/Mentor: Strictly unauthorized
+    public func getAdminReportData(requestingUser: User) throws -> AdminReportData {
+        guard requestingUser.role == .admin else {
+            throw AnalyticsServiceError.unauthorized("Only administrators are permitted to generate system-wide audit reports.")
+        }
+        
+        return AdminReportData(
+            activeStudentsCount: activeStudentsCount,
+            activeMentorsCount: activeMentorsCount,
+            totalExperimentsCount: totalStudentExperiments.count,
+            verifiedCount: totalVerifiedCount,
+            pendingReviewCount: totalPendingReviewCount,
+            rejectedCount: totalRejectedCount,
+            overallCompletionPercentage: systemCompletionPercentage,
+            studentSummaries: getAllStudentProgressSummaries(),
+            mentorWorkloads: getMentorWorkloadSummaries(),
+            subjectStatistics: getSystemSubjectStatistics(),
+            generatedDate: Date()
+        )
     }
 }

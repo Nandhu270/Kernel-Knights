@@ -85,6 +85,20 @@
 		5D321C119287E9FCE8E7AF4F /* StudentDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1ECEF7258FB8238B09C3B6 /* StudentDashboardView.swift */; };
 		7742DBD6D3376F6288424E8B /* StudentExperimentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E00DBC7FBDC9BA42BA8CC5 /* StudentExperimentListView.swift */; };
 		DB733A109D7513F7CA138B1F /* StudentVerificationHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983A47F6C900CFB5ECDCA75E /* StudentVerificationHistoryView.swift */; };
+		842C36FE985F13B4A6D90D3C /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5C71DC7A600B705690DEF1 /* ProgressBarView.swift */; };
+		D9F56CA6E99B502FFA169C9F /* ProgressSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF85D700C14BB4DC6BAAD3B6 /* ProgressSummaryCard.swift */; };
+		C5F25C906B82F576D8592CD3 /* StudentProgressRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AF0665E382CCC5036A5B76 /* StudentProgressRow.swift */; };
+		AFACA643BA5C3F8A0A0B4B25 /* SubjectProgressRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BFF20B53D582FE2785904D /* SubjectProgressRow.swift */; };
+		3510148EE01527989B57C30C /* PDFReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125A50004A434BCE3363517 /* PDFReportService.swift */; };
+		2863FFFB68D8EE43698ABF7C /* StudentAnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299084769C323D23C5572D19 /* StudentAnalyticsViewModel.swift */; };
+		C7A14C027CF7C80C79618F4B /* MentorAnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D039A4D64994B36AF6086D /* MentorAnalyticsViewModel.swift */; };
+		A3F46DF3FECD028209DD4309 /* AdminAnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8395697B82523F002779D0CC /* AdminAnalyticsViewModel.swift */; };
+		471D8A9D6948F7F9A38C368A /* ReportGenerationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47785DF0AA38BD72E52B928 /* ReportGenerationViewModel.swift */; };
+		B7ECDB4885C0FD438F440B48 /* StudentProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622CB90F99EBB54D54FD2C9 /* StudentProgressView.swift */; };
+		0BDA8696EDDB84E4475E5047 /* MentorProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FC7DE86D0411AB66F9A396 /* MentorProgressView.swift */; };
+		989370D152BFCAF264116559 /* AdminAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E0FEA42EB450C567C6C1F /* AdminAnalyticsView.swift */; };
+		7BB02169D40C9F380D3788EA /* PDFPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0126410CD2EED477DC18FE70 /* PDFPreviewView.swift */; };
+		C5F08F12F3C70811EEF6D2E9 /* ReportGenerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5803BF9AF0114BEE85A72AB0 /* ReportGenerationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -168,6 +182,20 @@
 		B5E00DBC7FBDC9BA42BA8CC5 /* StudentExperimentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentExperimentListView.swift"; sourceTree = "<group>"; };
 		983A47F6C900CFB5ECDCA75E /* StudentVerificationHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentVerificationHistoryView.swift"; sourceTree = "<group>"; };
 		AE92CA71109DCE34A495760D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info.plist"; sourceTree = "<group>"; };
+		1D5C71DC7A600B705690DEF1 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProgressBarView.swift"; sourceTree = "<group>"; };
+		AF85D700C14BB4DC6BAAD3B6 /* ProgressSummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProgressSummaryCard.swift"; sourceTree = "<group>"; };
+		D6AF0665E382CCC5036A5B76 /* StudentProgressRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentProgressRow.swift"; sourceTree = "<group>"; };
+		F1BFF20B53D582FE2785904D /* SubjectProgressRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubjectProgressRow.swift"; sourceTree = "<group>"; };
+		C125A50004A434BCE3363517 /* PDFReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFReportService.swift"; sourceTree = "<group>"; };
+		299084769C323D23C5572D19 /* StudentAnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentAnalyticsViewModel.swift"; sourceTree = "<group>"; };
+		B7D039A4D64994B36AF6086D /* MentorAnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorAnalyticsViewModel.swift"; sourceTree = "<group>"; };
+		8395697B82523F002779D0CC /* AdminAnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdminAnalyticsViewModel.swift"; sourceTree = "<group>"; };
+		B47785DF0AA38BD72E52B928 /* ReportGenerationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportGenerationViewModel.swift"; sourceTree = "<group>"; };
+		5622CB90F99EBB54D54FD2C9 /* StudentProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentProgressView.swift"; sourceTree = "<group>"; };
+		16FC7DE86D0411AB66F9A396 /* MentorProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorProgressView.swift"; sourceTree = "<group>"; };
+		259E0FEA42EB450C567C6C1F /* AdminAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdminAnalyticsView.swift"; sourceTree = "<group>"; };
+		0126410CD2EED477DC18FE70 /* PDFPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFPreviewView.swift"; sourceTree = "<group>"; };
+		5803BF9AF0114BEE85A72AB0 /* ReportGenerationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportGenerationView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,10 +256,14 @@
 				2706A2B8D96CDFB2BB7FEFF1 /* CustomTextField.swift */,
 				586E528E99B15A66513ACE76 /* EmptyStateView.swift */,
 				D88006E34268B8B9FFA9562C /* ExperimentCard.swift */,
+				1D5C71DC7A600B705690DEF1 /* ProgressBarView.swift */,
+				AF85D700C14BB4DC6BAAD3B6 /* ProgressSummaryCard.swift */,
 				891E454AAE6831B4224AE987 /* RoleBadge.swift */,
 				5A6079531B383E3A84F0558A /* StatCard.swift */,
 				CA4C88016562769494E85E10 /* StatusBadge.swift */,
+				D6AF0665E382CCC5036A5B76 /* StudentProgressRow.swift */,
 				4D3A762E827BE5729EA575FD /* StudentSelectionRow.swift */,
+				F1BFF20B53D582FE2785904D /* SubjectProgressRow.swift */,
 				84674C36F00E6D1A86BD4198 /* UserRowView.swift */,
 			);
 			path = "Components";
@@ -269,6 +301,7 @@
 				C08D882FA428FEC52635F9D6 /* AuthService.swift */,
 				917E15D242FB992A79234ED7 /* DepartmentService.swift */,
 				245D7DD8F5CF0C424A545BA3 /* ExperimentService.swift */,
+				C125A50004A434BCE3363517 /* PDFReportService.swift */,
 				3396A2CC4D9C0737138EAF97 /* SubjectService.swift */,
 				49F820D09BEC475FF73E8408 /* UserService.swift */,
 				66C852B1C0B1179535FA6D1F /* VerificationService.swift */,
@@ -279,6 +312,7 @@
 		8C5AB68D05D2A8113475EB1A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				8395697B82523F002779D0CC /* AdminAnalyticsViewModel.swift */,
 				B02F046EF4796A39E7FF6E42 /* AdminViewModel.swift */,
 				86DE9C48DFC52796BC472F2A /* AssignExperimentViewModel.swift */,
 				453E20E98C7E29F39351DE79 /* AssignedExperimentsViewModel.swift */,
@@ -293,11 +327,14 @@
 				BF63F7620A25287B74BF7B98 /* ExperimentListViewModel.swift */,
 				C494806A4C8FF69F4B0179F5 /* ExperimentReviewViewModel.swift */,
 				34C5D661CCD9528B722EA72A /* ExperimentViewModel.swift */,
+				B7D039A4D64994B36AF6086D /* MentorAnalyticsViewModel.swift */,
 				3C8109C97EE233CDB6ECEC3C /* MentorAssignmentViewModel.swift */,
 				59AD25F0866083CEFD661107 /* MentorReviewQueueViewModel.swift */,
 				C480878C6B89512766A45DAA /* MentorStudentsViewModel.swift */,
 				679BFBFBD81FAE8BECD9DC2A /* MentorViewModel.swift */,
+				B47785DF0AA38BD72E52B928 /* ReportGenerationViewModel.swift */,
 				B6DF26FD177C7D3B62B8A99C /* StudentAssignedExperimentsViewModel.swift */,
+				299084769C323D23C5572D19 /* StudentAnalyticsViewModel.swift */,
 				520E9B5479BDFA9C7A2D9345 /* StudentViewModel.swift */,
 				83F8B4AAC9EFAFBD44B07177 /* SubmitExperimentViewModel.swift */,
 				D76D3B9F1683B6FF6519215D /* UserManagementViewModel.swift */,
@@ -313,6 +350,7 @@
 				F7277294A66F780CB8E54C03 /* Authentication */,
 				E7F1B2DC9E6C0089E8CA1991 /* Experiments */,
 				2F503F9B529E7A386AA5D95C /* Mentor */,
+				5737DAB9A45BDB81832B34D8 /* Reports */,
 				8357EDD82DB26A1E3772769D /* Student */,
 			);
 			path = "Views";
@@ -321,6 +359,7 @@
 		7F914A95C7F7788B7488AEAA /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				259E0FEA42EB450C567C6C1F /* AdminAnalyticsView.swift */,
 				EE1EB30E8122433818B731F2 /* AdminDashboardView.swift */,
 				DB478D25A113523B203133C5 /* CreateUserView.swift */,
 				7D0C63A3CC3A8CD8C594ADA7 /* DepartmentManagementView.swift */,
@@ -358,11 +397,21 @@
 				7998FD5CE5149A55749F5673 /* CreateMentorExperimentView.swift */,
 				92CA655ECE973A117FBA64C2 /* ExperimentReviewView.swift */,
 				A13FEE532D5642F37E907DE1 /* MentorDashboardView.swift */,
+				16FC7DE86D0411AB66F9A396 /* MentorProgressView.swift */,
 				BD4CA74118B8D4B6A01D8311 /* MentorReviewQueueView.swift */,
 				874D8CCF576F0CF7BB01A6D5 /* MentorStudentsView.swift */,
 				D08B565D93E092DFA0BFD946 /* RejectExperimentView.swift */,
 			);
 			path = "Mentor";
+			sourceTree = "<group>";
+		};
+		5737DAB9A45BDB81832B34D8 /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				0126410CD2EED477DC18FE70 /* PDFPreviewView.swift */,
+				5803BF9AF0114BEE85A72AB0 /* ReportGenerationView.swift */,
+			);
+			path = "Reports";
 			sourceTree = "<group>";
 		};
 		8357EDD82DB26A1E3772769D /* Student */ = {
@@ -374,6 +423,7 @@
 				8459C6FF946060011549661F /* StudentAssignedExperimentsView.swift */,
 				FB1ECEF7258FB8238B09C3B6 /* StudentDashboardView.swift */,
 				B5E00DBC7FBDC9BA42BA8CC5 /* StudentExperimentListView.swift */,
+				5622CB90F99EBB54D54FD2C9 /* StudentProgressView.swift */,
 				983A47F6C900CFB5ECDCA75E /* StudentVerificationHistoryView.swift */,
 			);
 			path = "Student";
@@ -525,6 +575,20 @@
 				5D321C119287E9FCE8E7AF4F /* StudentDashboardView.swift in Sources */,
 				7742DBD6D3376F6288424E8B /* StudentExperimentListView.swift in Sources */,
 				DB733A109D7513F7CA138B1F /* StudentVerificationHistoryView.swift in Sources */,
+				842C36FE985F13B4A6D90D3C /* ProgressBarView.swift in Sources */,
+				D9F56CA6E99B502FFA169C9F /* ProgressSummaryCard.swift in Sources */,
+				C5F25C906B82F576D8592CD3 /* StudentProgressRow.swift in Sources */,
+				AFACA643BA5C3F8A0A0B4B25 /* SubjectProgressRow.swift in Sources */,
+				3510148EE01527989B57C30C /* PDFReportService.swift in Sources */,
+				2863FFFB68D8EE43698ABF7C /* StudentAnalyticsViewModel.swift in Sources */,
+				C7A14C027CF7C80C79618F4B /* MentorAnalyticsViewModel.swift in Sources */,
+				A3F46DF3FECD028209DD4309 /* AdminAnalyticsViewModel.swift in Sources */,
+				471D8A9D6948F7F9A38C368A /* ReportGenerationViewModel.swift in Sources */,
+				B7ECDB4885C0FD438F440B48 /* StudentProgressView.swift in Sources */,
+				0BDA8696EDDB84E4475E5047 /* MentorProgressView.swift in Sources */,
+				989370D152BFCAF264116559 /* AdminAnalyticsView.swift in Sources */,
+				7BB02169D40C9F380D3788EA /* PDFPreviewView.swift in Sources */,
+				C5F08F12F3C70811EEF6D2E9 /* ReportGenerationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

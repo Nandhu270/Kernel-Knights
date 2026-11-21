@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Main dashboard for the Administrator role.
+/// Main dashboard for the Administrator role with institutional analytics and PDF audit reports.
 public struct AdminDashboardView: View {
     @Environment(AuthService.self) private var authService
     @Environment(AppDataStore.self) private var dataStore
@@ -8,6 +8,7 @@ public struct AdminDashboardView: View {
     @State private var showingLogoutConfirmation = false
     @State private var showingCreateUserSheet = false
     @State private var showingResetConfirmation = false
+    @State private var showingReportSheet = false
     
     public init() {}
     
@@ -17,6 +18,10 @@ public struct AdminDashboardView: View {
     
     private var viewModel: AdminViewModel {
         AdminViewModel(dataStore: dataStore)
+    }
+    
+    private var analyticsService: AnalyticsService {
+        AnalyticsService(dataStore: dataStore)
     }
     
     public var body: some View {
@@ -54,6 +59,23 @@ public struct AdminDashboardView: View {
                     .background(Color(.secondarySystemBackground))
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     
+                    // MARK: - Institutional Completion Overview (Phase 6)
+                    let completionPct = analyticsService.systemCompletionPercentage
+                    let totalExps = analyticsService.totalStudentExperiments.count
+                    let verified = analyticsService.totalVerifiedCount
+                    let pending = analyticsService.totalPendingReviewCount
+                    let rejected = analyticsService.totalRejectedCount
+                    
+                    ProgressSummaryCard(
+                        title: "Institutional Experiment Completion",
+                        percentage: completionPct,
+                        totalCount: totalExps,
+                        verifiedCount: verified,
+                        pendingCount: pending,
+                        rejectedCount: rejected,
+                        tintColor: .purple
+                    )
+                    
                     // MARK: - System Overview Metrics
                     VStack(alignment: .leading, spacing: 12) {
                         Text("System Overview")
@@ -68,21 +90,21 @@ public struct AdminDashboardView: View {
                             )
                             
                             StatCard(
-                                title: "Students",
-                                value: "\(viewModel.totalStudentsCount)",
+                                title: "Active Students",
+                                value: "\(analyticsService.activeStudentsCount)",
                                 iconName: "graduationcap.fill",
                                 color: .blue
                             )
                             
                             StatCard(
-                                title: "Mentors",
-                                value: "\(viewModel.totalMentorsCount)",
+                                title: "Active Mentors",
+                                value: "\(analyticsService.activeMentorsCount)",
                                 iconName: "person.crop.rectangle.badge.plus",
                                 color: .indigo
                             )
                             
                             StatCard(
-                                title: "Experiments",
+                                title: "Total Experiments",
                                 value: "\(viewModel.totalExperimentsCount)",
                                 iconName: "doc.text.fill",
                                 color: .teal
@@ -90,22 +112,48 @@ public struct AdminDashboardView: View {
                         }
                     }
                     
-                    // MARK: - Administrative Controls (Phase 2 Features)
+                    // MARK: - Administrative Controls & Analytics (Phase 2 & 6)
                     VStack(alignment: .leading, spacing: 14) {
-                        Text("Administrative Controls")
+                        Text("Administrative Controls & Reports")
                             .font(.headline)
                         
                         VStack(spacing: 10) {
-                            NavigationLink(destination: UserManagementView()) {
+                            // 1. Institutional Analytics & Reports (Phase 6)
+                            NavigationLink(destination: AdminAnalyticsView()) {
                                 navCardContent(
-                                    title: "User Management",
-                                    subtitle: "\(viewModel.totalUsersCount - 1) students & mentors registered",
-                                    icon: "person.2.badge.gearshape.fill",
+                                    title: "Institutional Analytics & Breakdown",
+                                    subtitle: "System completion, student progress, mentor workloads",
+                                    icon: "chart.bar.xaxis",
                                     color: .purple
                                 )
                             }
                             .buttonStyle(.plain)
                             
+                            // 2. Export Institutional Audit PDF (Phase 6)
+                            Button(action: {
+                                showingReportSheet = true
+                            }) {
+                                navCardContent(
+                                    title: "Export Institutional Audit PDF",
+                                    subtitle: "Compile complete institutional performance report",
+                                    icon: "doc.text.fill",
+                                    color: .indigo
+                                )
+                            }
+                            .buttonStyle(.plain)
+                            
+                            // 3. User Management
+                            NavigationLink(destination: UserManagementView()) {
+                                navCardContent(
+                                    title: "User Management",
+                                    subtitle: "\(viewModel.totalUsersCount - 1) students & mentors registered",
+                                    icon: "person.2.badge.gearshape.fill",
+                                    color: .blue
+                                )
+                            }
+                            .buttonStyle(.plain)
+                            
+                            // 4. Mentor Assignments
                             NavigationLink(destination: MentorAssignmentView()) {
                                 navCardContent(
                                     title: "Mentor Assignments",
@@ -116,6 +164,7 @@ public struct AdminDashboardView: View {
                             }
                             .buttonStyle(.plain)
                             
+                            // 5. Department Management
                             NavigationLink(destination: DepartmentManagementView()) {
                                 navCardContent(
                                     title: "Department Management",
@@ -126,6 +175,7 @@ public struct AdminDashboardView: View {
                             }
                             .buttonStyle(.plain)
                             
+                            // 6. All Experiments & Audit History
                             if let a = admin {
                                 NavigationLink(destination: ExperimentListView(user: a, title: "All Experiments")) {
                                     navCardContent(
@@ -148,6 +198,7 @@ public struct AdminDashboardView: View {
                                 .buttonStyle(.plain)
                             }
                             
+                            // 7. Create New User
                             Button(action: {
                                 showingCreateUserSheet = true
                             }) {
@@ -160,6 +211,7 @@ public struct AdminDashboardView: View {
                             }
                             .buttonStyle(.plain)
                             
+                            // 8. Reset In-Memory Data
                             Button(action: {
                                 showingResetConfirmation = true
                             }) {
@@ -193,6 +245,11 @@ public struct AdminDashboardView: View {
             }
             .sheet(isPresented: $showingCreateUserSheet) {
                 CreateUserView()
+            }
+            .sheet(isPresented: $showingReportSheet) {
+                if let a = admin {
+                    ReportGenerationView(reportType: .admin(a), requestingUser: a)
+                }
             }
             .confirmationDialog(
                 "Are you sure you want to log out?",

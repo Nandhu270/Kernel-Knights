@@ -1,12 +1,13 @@
 import SwiftUI
 
-/// Main dashboard for the Student role.
+/// Main dashboard for the Student role with progress tracking and academic analytics.
 public struct StudentDashboardView: View {
     @Environment(AuthService.self) private var authService
     @Environment(AppDataStore.self) private var dataStore
     
     @State private var showingLogoutConfirmation = false
     @State private var showingCreateExperimentSheet = false
+    @State private var showingReportSheet = false
     
     public init() {}
     
@@ -17,6 +18,10 @@ public struct StudentDashboardView: View {
     private var viewModel: StudentViewModel? {
         guard let student = student else { return nil }
         return StudentViewModel(student: student, dataStore: dataStore)
+    }
+    
+    private var analyticsService: AnalyticsService {
+        AnalyticsService(dataStore: dataStore)
     }
     
     public var body: some View {
@@ -65,15 +70,60 @@ public struct StudentDashboardView: View {
                     .background(Color(.secondarySystemBackground))
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     
-                    // MARK: - Progress Metrics
+                    // MARK: - Progress Tracking & Completion Percentage (Phase 6)
+                    if let s = student {
+                        let completionPct = analyticsService.getStudentCompletionPercentage(for: s.id)
+                        let exps = analyticsService.getStudentExperiments(for: s.id)
+                        let verified = exps.filter { $0.status == .verified }.count
+                        let pending = exps.filter { $0.status != .verified && $0.status != .rejected }.count
+                        let rejected = exps.filter { $0.status == .rejected }.count
+                        
+                        ProgressSummaryCard(
+                            title: "My Lab Completion",
+                            percentage: completionPct,
+                            totalCount: exps.count,
+                            verifiedCount: verified,
+                            pendingCount: pending,
+                            rejectedCount: rejected,
+                            tintColor: .blue
+                        )
+                    }
+                    
+                    // MARK: - Subject-Wise Progress Summary (Phase 6)
+                    if let s = student {
+                        let subjectProgressList = analyticsService.getSubjectProgress(for: s.id)
+                        if !subjectProgressList.isEmpty {
+                            VStack(alignment: .leading, spacing: 10) {
+                                HStack {
+                                    Text("Subject-Wise Progress")
+                                        .font(.headline)
+                                    Spacer()
+                                    NavigationLink(destination: StudentProgressView(student: s)) {
+                                        Text("See Details")
+                                            .font(.caption)
+                                            .fontWeight(.semibold)
+                                            .foregroundStyle(.tint)
+                                    }
+                                }
+                                
+                                VStack(spacing: 8) {
+                                    ForEach(subjectProgressList.prefix(2)) { sp in
+                                        SubjectProgressRow(progress: sp)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    // MARK: - Progress Metrics Grid
                     if let vm = viewModel {
                         VStack(alignment: .leading, spacing: 12) {
-                            Text("My Lab Progress")
+                            Text("Experiment Lifecycle")
                                 .font(.headline)
                             
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                                 StatCard(
-                                    title: "Assigned",
+                                    title: "Assigned Work",
                                     value: "\(vm.assignedCount)",
                                     iconName: "arrow.down.doc.fill",
                                     color: .blue
@@ -117,13 +167,14 @@ public struct StudentDashboardView: View {
                         }
                     }
                     
-                    // MARK: - Lab Sections (Phase 3 Connected)
+                    // MARK: - Lab Sections & Reports
                     VStack(alignment: .leading, spacing: 14) {
-                        Text("Lab Sections")
+                        Text("Lab Sections & Reports")
                             .font(.headline)
                         
                         VStack(spacing: 10) {
                             if let s = student {
+                                // 1. My Experiments
                                 NavigationLink(destination: StudentExperimentListView(student: s)) {
                                     navRowContent(
                                         title: "My Experiments",
@@ -133,37 +184,62 @@ public struct StudentDashboardView: View {
                                     )
                                 }
                                 .buttonStyle(.plain)
-                            }
-                            
-                            Button(action: {
-                                showingCreateExperimentSheet = true
-                            }) {
-                                navRowContent(
-                                    title: "Create New Experiment",
-                                    subtitle: "Draft a new lab record entry",
-                                    icon: "plus.circle.fill",
-                                    color: .teal
-                                )
-                            }
-                            .buttonStyle(.plain)
-                            
-                            if let s = student {
-                                NavigationLink(destination: StudentAssignedExperimentsView(student: s)) {
+                                
+                                // 2. My Lab Analytics (Phase 6)
+                                NavigationLink(destination: StudentProgressView(student: s)) {
                                     navRowContent(
-                                        title: "Assigned by Mentor",
-                                        subtitle: "\(viewModel?.assignedFromMentorCount ?? 0) assignments received",
-                                        icon: "arrow.down.doc.fill",
+                                        title: "My Lab Analytics",
+                                        subtitle: "Detailed subject completion breakdown & charts",
+                                        icon: "chart.pie.fill",
                                         color: .indigo
                                     )
                                 }
                                 .buttonStyle(.plain)
                                 
+                                // 3. Export Lab Record PDF (Phase 6)
+                                Button(action: {
+                                    showingReportSheet = true
+                                }) {
+                                    navRowContent(
+                                        title: "Export Lab Record PDF",
+                                        subtitle: "Compile academic record book with verification sign-off",
+                                        icon: "doc.text.magnifyingglass",
+                                        color: .purple
+                                    )
+                                }
+                                .buttonStyle(.plain)
+                                
+                                // 4. Create New Experiment
+                                Button(action: {
+                                    showingCreateExperimentSheet = true
+                                }) {
+                                    navRowContent(
+                                        title: "Create New Experiment",
+                                        subtitle: "Draft a new lab record entry",
+                                        icon: "plus.circle.fill",
+                                        color: .teal
+                                    )
+                                }
+                                .buttonStyle(.plain)
+                                
+                                // 5. Assigned by Mentor
+                                NavigationLink(destination: StudentAssignedExperimentsView(student: s)) {
+                                    navRowContent(
+                                        title: "Assigned by Mentor",
+                                        subtitle: "\(viewModel?.assignedFromMentorCount ?? 0) assignments received",
+                                        icon: "arrow.down.doc.fill",
+                                        color: .blue
+                                    )
+                                }
+                                .buttonStyle(.plain)
+                                
+                                // 6. Verification History
                                 NavigationLink(destination: StudentVerificationHistoryView(student: s)) {
                                     navRowContent(
                                         title: "Verification History",
                                         subtitle: "Review feedback and audit trail from your mentor",
                                         icon: "clock.arrow.circlepath",
-                                        color: .purple
+                                        color: .green
                                     )
                                 }
                                 .buttonStyle(.plain)
@@ -191,6 +267,11 @@ public struct StudentDashboardView: View {
             .sheet(isPresented: $showingCreateExperimentSheet) {
                 if let s = student {
                     CreateExperimentView(student: s)
+                }
+            }
+            .sheet(isPresented: $showingReportSheet) {
+                if let s = student {
+                    ReportGenerationView(reportType: .student(s), requestingUser: s)
                 }
             }
             .confirmationDialog(

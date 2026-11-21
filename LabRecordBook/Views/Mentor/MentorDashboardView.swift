@@ -1,12 +1,13 @@
 import SwiftUI
 
-/// Main dashboard for the Mentor role.
+/// Main dashboard for the Mentor role with supervisory analytics, student progress tracking, and report generation.
 public struct MentorDashboardView: View {
     @Environment(AuthService.self) private var authService
     @Environment(AppDataStore.self) private var dataStore
     
     @State private var showingLogoutConfirmation = false
     @State private var showingCreateExperimentSheet = false
+    @State private var showingReportSheet = false
     
     public init() {}
     
@@ -17,6 +18,10 @@ public struct MentorDashboardView: View {
     private var viewModel: MentorViewModel? {
         guard let mentor = mentor else { return nil }
         return MentorViewModel(mentor: mentor, dataStore: dataStore)
+    }
+    
+    private var analyticsService: AnalyticsService {
+        AnalyticsService(dataStore: dataStore)
     }
     
     public var body: some View {
@@ -54,7 +59,46 @@ public struct MentorDashboardView: View {
                     .background(Color(.secondarySystemBackground))
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     
-                    // MARK: - Mentorship Metrics (Phase 4 Dynamic)
+                    // MARK: - Students Requiring Attention Alert (Phase 6)
+                    if let m = mentor {
+                        let attentionStudents = analyticsService.getStudentsRequiringAttention(for: m.id)
+                        if !attentionStudents.isEmpty {
+                            NavigationLink(destination: MentorProgressView(mentor: m)) {
+                                HStack(spacing: 12) {
+                                    Image(systemName: "exclamationmark.triangle.fill")
+                                        .font(.title3)
+                                        .foregroundStyle(.red)
+                                    
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text("\(attentionStudents.count) Student(s) Require Attention")
+                                            .font(.subheadline)
+                                            .fontWeight(.bold)
+                                            .foregroundStyle(.red)
+                                        
+                                        Text("Students have rejected experiments needing guidance")
+                                            .font(.caption2)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                    
+                                    Spacer()
+                                    
+                                    Image(systemName: "chevron.right")
+                                        .font(.caption)
+                                        .foregroundStyle(.red)
+                                }
+                                .padding(12)
+                                .background(Color.red.opacity(0.08))
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.red.opacity(0.25), lineWidth: 1)
+                                )
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                    
+                    // MARK: - Mentorship Metrics (Phase 4 & 6 Dynamic)
                     if let vm = viewModel {
                         VStack(alignment: .leading, spacing: 12) {
                             Text("Mentorship Overview")
@@ -69,7 +113,7 @@ public struct MentorDashboardView: View {
                                 )
                                 
                                 StatCard(
-                                    title: "Assigned Experiments",
+                                    title: "Assigned Work",
                                     value: "\(vm.totalAssignmentsCount)",
                                     iconName: "tray.full.fill",
                                     color: .blue
@@ -108,7 +152,7 @@ public struct MentorDashboardView: View {
                     
                     // MARK: - Mentorship Navigation Actions
                     VStack(alignment: .leading, spacing: 14) {
-                        Text("Mentorship Actions")
+                        Text("Mentorship Actions & Reports")
                             .font(.headline)
                         
                         VStack(spacing: 10) {
@@ -125,23 +169,47 @@ public struct MentorDashboardView: View {
                                 }
                                 .buttonStyle(.plain)
                                 
-                                // 2. My Students
-                                NavigationLink(destination: MentorStudentsView(mentor: m)) {
+                                // 2. Supervisory Analytics & Progress (Phase 6)
+                                NavigationLink(destination: MentorProgressView(mentor: m)) {
                                     mentorNavRowContent(
-                                        title: "My Students",
-                                        subtitle: "\(viewModel?.assignedStudentsCount ?? 0) students under your supervision",
-                                        icon: "person.2.fill",
+                                        title: "Supervisory Analytics & Progress",
+                                        subtitle: "Track completion rates & students requiring attention",
+                                        icon: "chart.line.uptrend.xyaxis",
                                         color: .indigo
                                     )
                                 }
                                 .buttonStyle(.plain)
                                 
-                                // 2. Create Experiment
+                                // 3. Export Supervisory Report (Phase 6)
+                                Button(action: {
+                                    showingReportSheet = true
+                                }) {
+                                    mentorNavRowContent(
+                                        title: "Generate Mentor Supervisory PDF",
+                                        subtitle: "Export student cohort progress & audit report",
+                                        icon: "doc.text.magnifyingglass",
+                                        color: .purple
+                                    )
+                                }
+                                .buttonStyle(.plain)
+                                
+                                // 4. My Students
+                                NavigationLink(destination: MentorStudentsView(mentor: m)) {
+                                    mentorNavRowContent(
+                                        title: "My Students",
+                                        subtitle: "\(viewModel?.assignedStudentsCount ?? 0) students under your supervision",
+                                        icon: "person.2.fill",
+                                        color: .blue
+                                    )
+                                }
+                                .buttonStyle(.plain)
+                                
+                                // 5. Create Experiment
                                 Button(action: {
                                     showingCreateExperimentSheet = true
                                 }) {
                                     mentorNavRowContent(
-                                        title: "Create Experiment",
+                                        title: "Create Experiment Template",
                                         subtitle: "Draft a new lab experiment template for assignment",
                                         icon: "plus.circle.fill",
                                         color: .teal
@@ -149,35 +217,24 @@ public struct MentorDashboardView: View {
                                 }
                                 .buttonStyle(.plain)
                                 
-                                // 3. Assigned Experiments
+                                // 6. Assigned Experiments
                                 NavigationLink(destination: AssignedExperimentsView(mentor: m)) {
                                     mentorNavRowContent(
                                         title: "Assigned Experiments",
                                         subtitle: "\(viewModel?.totalAssignmentsCount ?? 0) total student assignments tracked",
                                         icon: "arrow.down.doc.fill",
-                                        color: .blue
+                                        color: .teal
                                     )
                                 }
                                 .buttonStyle(.plain)
                                 
-                                // 4. Assignment History
-                                NavigationLink(destination: AssignedExperimentsView(mentor: m)) {
-                                    mentorNavRowContent(
-                                        title: "Assignment History",
-                                        subtitle: "Audit log of all assignments and completion dates",
-                                        icon: "clock.arrow.circlepath",
-                                        color: .purple
-                                    )
-                                }
-                                .buttonStyle(.plain)
-                                
-                                // 5. Supervised Student Experiments
+                                // 7. Supervised Student Experiments
                                 NavigationLink(destination: ExperimentListView(user: m, title: "Supervised Experiments")) {
                                     mentorNavRowContent(
                                         title: "Supervised Experiments",
                                         subtitle: "\(viewModel?.mentorExperiments.count ?? 0) experiments from assigned students",
-                                        icon: "doc.text.magnifyingglass",
-                                        color: .orange
+                                        icon: "doc.text.fill",
+                                        color: .cyan
                                     )
                                 }
                                 .buttonStyle(.plain)
@@ -215,6 +272,11 @@ public struct MentorDashboardView: View {
             .sheet(isPresented: $showingCreateExperimentSheet) {
                 if let m = mentor {
                     CreateMentorExperimentView(mentor: m)
+                }
+            }
+            .sheet(isPresented: $showingReportSheet) {
+                if let m = mentor {
+                    ReportGenerationView(reportType: .mentor(m), requestingUser: m)
                 }
             }
         }
