@@ -99,6 +99,27 @@
 		989370D152BFCAF264116559 /* AdminAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259E0FEA42EB450C567C6C1F /* AdminAnalyticsView.swift */; };
 		7BB02169D40C9F380D3788EA /* PDFPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0126410CD2EED477DC18FE70 /* PDFPreviewView.swift */; };
 		C5F08F12F3C70811EEF6D2E9 /* ReportGenerationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5803BF9AF0114BEE85A72AB0 /* ReportGenerationView.swift */; };
+		770000000000000000000001 /* StudentSubjectAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000001 /* StudentSubjectAssignment.swift */; };
+		770000000000000000000002 /* MentorSubjectAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000002 /* MentorSubjectAssignment.swift */; };
+		770000000000000000000003 /* SubjectAllocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000003 /* SubjectAllocationService.swift */; };
+		770000000000000000000004 /* SubjectCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000004 /* SubjectCardView.swift */; };
+		770000000000000000000005 /* SubjectStudentRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000005 /* SubjectStudentRowView.swift */; };
+		770000000000000000000006 /* MentorSelectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000006 /* MentorSelectionRow.swift */; };
+		770000000000000000000007 /* StudentAllocationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000007 /* StudentAllocationRow.swift */; };
+		770000000000000000000008 /* SubjectManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000008 /* SubjectManagementViewModel.swift */; };
+		770000000000000000000009 /* MentorSubjectAllocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000009 /* MentorSubjectAllocationViewModel.swift */; };
+		770000000000000000000010 /* StudentSubjectAllocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000010 /* StudentSubjectAllocationViewModel.swift */; };
+		770000000000000000000011 /* MentorSubjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000011 /* MentorSubjectsViewModel.swift */; };
+		770000000000000000000012 /* SubjectStudentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000012 /* SubjectStudentsViewModel.swift */; };
+		770000000000000000000013 /* StudentSubjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000013 /* StudentSubjectsViewModel.swift */; };
+		770000000000000000000014 /* SubjectManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000014 /* SubjectManagementView.swift */; };
+		770000000000000000000015 /* CreateSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000015 /* CreateSubjectView.swift */; };
+		770000000000000000000016 /* EditSubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000016 /* EditSubjectView.swift */; };
+		770000000000000000000017 /* MentorSubjectAllocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000017 /* MentorSubjectAllocationView.swift */; };
+		770000000000000000000018 /* StudentSubjectAllocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000018 /* StudentSubjectAllocationView.swift */; };
+		770000000000000000000019 /* MentorSubjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000019 /* MentorSubjectsView.swift */; };
+		770000000000000000000020 /* SubjectStudentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000020 /* SubjectStudentsView.swift */; };
+		770000000000000000000021 /* StudentSubjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771100000000000000000021 /* StudentSubjectsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -196,6 +217,27 @@
 		259E0FEA42EB450C567C6C1F /* AdminAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdminAnalyticsView.swift"; sourceTree = "<group>"; };
 		0126410CD2EED477DC18FE70 /* PDFPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PDFPreviewView.swift"; sourceTree = "<group>"; };
 		5803BF9AF0114BEE85A72AB0 /* ReportGenerationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportGenerationView.swift"; sourceTree = "<group>"; };
+		771100000000000000000001 /* StudentSubjectAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentSubjectAssignment.swift"; sourceTree = "<group>"; };
+		771100000000000000000002 /* MentorSubjectAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorSubjectAssignment.swift"; sourceTree = "<group>"; };
+		771100000000000000000003 /* SubjectAllocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubjectAllocationService.swift"; sourceTree = "<group>"; };
+		771100000000000000000004 /* SubjectCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubjectCardView.swift"; sourceTree = "<group>"; };
+		771100000000000000000005 /* SubjectStudentRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubjectStudentRowView.swift"; sourceTree = "<group>"; };
+		771100000000000000000006 /* MentorSelectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorSelectionRow.swift"; sourceTree = "<group>"; };
+		771100000000000000000007 /* StudentAllocationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentAllocationRow.swift"; sourceTree = "<group>"; };
+		771100000000000000000008 /* SubjectManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubjectManagementViewModel.swift"; sourceTree = "<group>"; };
+		771100000000000000000009 /* MentorSubjectAllocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorSubjectAllocationViewModel.swift"; sourceTree = "<group>"; };
+		771100000000000000000010 /* StudentSubjectAllocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentSubjectAllocationViewModel.swift"; sourceTree = "<group>"; };
+		771100000000000000000011 /* MentorSubjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorSubjectsViewModel.swift"; sourceTree = "<group>"; };
+		771100000000000000000012 /* SubjectStudentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubjectStudentsViewModel.swift"; sourceTree = "<group>"; };
+		771100000000000000000013 /* StudentSubjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentSubjectsViewModel.swift"; sourceTree = "<group>"; };
+		771100000000000000000014 /* SubjectManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubjectManagementView.swift"; sourceTree = "<group>"; };
+		771100000000000000000015 /* CreateSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateSubjectView.swift"; sourceTree = "<group>"; };
+		771100000000000000000016 /* EditSubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditSubjectView.swift"; sourceTree = "<group>"; };
+		771100000000000000000017 /* MentorSubjectAllocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorSubjectAllocationView.swift"; sourceTree = "<group>"; };
+		771100000000000000000018 /* StudentSubjectAllocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentSubjectAllocationView.swift"; sourceTree = "<group>"; };
+		771100000000000000000019 /* MentorSubjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MentorSubjectsView.swift"; sourceTree = "<group>"; };
+		771100000000000000000020 /* SubjectStudentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubjectStudentsView.swift"; sourceTree = "<group>"; };
+		771100000000000000000021 /* StudentSubjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentSubjectsView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,14 +298,18 @@
 				2706A2B8D96CDFB2BB7FEFF1 /* CustomTextField.swift */,
 				586E528E99B15A66513ACE76 /* EmptyStateView.swift */,
 				D88006E34268B8B9FFA9562C /* ExperimentCard.swift */,
+				771100000000000000000006 /* MentorSelectionRow.swift */,
 				1D5C71DC7A600B705690DEF1 /* ProgressBarView.swift */,
 				AF85D700C14BB4DC6BAAD3B6 /* ProgressSummaryCard.swift */,
 				891E454AAE6831B4224AE987 /* RoleBadge.swift */,
 				5A6079531B383E3A84F0558A /* StatCard.swift */,
 				CA4C88016562769494E85E10 /* StatusBadge.swift */,
+				771100000000000000000007 /* StudentAllocationRow.swift */,
 				D6AF0665E382CCC5036A5B76 /* StudentProgressRow.swift */,
 				4D3A762E827BE5729EA575FD /* StudentSelectionRow.swift */,
+				771100000000000000000004 /* SubjectCardView.swift */,
 				F1BFF20B53D582FE2785904D /* SubjectProgressRow.swift */,
+				771100000000000000000005 /* SubjectStudentRowView.swift */,
 				84674C36F00E6D1A86BD4198 /* UserRowView.swift */,
 			);
 			path = "Components";
@@ -285,6 +331,8 @@
 				B9941BE4D4FA9B032E11F3E9 /* Department.swift */,
 				7AD2755661D44A6002C4ABF1 /* Experiment.swift */,
 				03B3EF88BABAF0CEB78114E0 /* ExperimentStatus.swift */,
+				771100000000000000000002 /* MentorSubjectAssignment.swift */,
+				771100000000000000000001 /* StudentSubjectAssignment.swift */,
 				97119BBC0112916E00CCCCB9 /* Subject.swift */,
 				3D8DB35B153A7F770C8E29BA /* User.swift */,
 				17ED35992C4E1A7D3BB61D3B /* UserRole.swift */,
@@ -302,6 +350,7 @@
 				917E15D242FB992A79234ED7 /* DepartmentService.swift */,
 				245D7DD8F5CF0C424A545BA3 /* ExperimentService.swift */,
 				C125A50004A434BCE3363517 /* PDFReportService.swift */,
+				771100000000000000000003 /* SubjectAllocationService.swift */,
 				3396A2CC4D9C0737138EAF97 /* SubjectService.swift */,
 				49F820D09BEC475FF73E8408 /* UserService.swift */,
 				66C852B1C0B1179535FA6D1F /* VerificationService.swift */,
@@ -328,14 +377,20 @@
 				C494806A4C8FF69F4B0179F5 /* ExperimentReviewViewModel.swift */,
 				34C5D661CCD9528B722EA72A /* ExperimentViewModel.swift */,
 				B7D039A4D64994B36AF6086D /* MentorAnalyticsViewModel.swift */,
+				771100000000000000000009 /* MentorSubjectAllocationViewModel.swift */,
 				3C8109C97EE233CDB6ECEC3C /* MentorAssignmentViewModel.swift */,
 				59AD25F0866083CEFD661107 /* MentorReviewQueueViewModel.swift */,
 				C480878C6B89512766A45DAA /* MentorStudentsViewModel.swift */,
+				771100000000000000000011 /* MentorSubjectsViewModel.swift */,
 				679BFBFBD81FAE8BECD9DC2A /* MentorViewModel.swift */,
 				B47785DF0AA38BD72E52B928 /* ReportGenerationViewModel.swift */,
 				B6DF26FD177C7D3B62B8A99C /* StudentAssignedExperimentsViewModel.swift */,
 				299084769C323D23C5572D19 /* StudentAnalyticsViewModel.swift */,
+				771100000000000000000010 /* StudentSubjectAllocationViewModel.swift */,
+				771100000000000000000013 /* StudentSubjectsViewModel.swift */,
 				520E9B5479BDFA9C7A2D9345 /* StudentViewModel.swift */,
+				771100000000000000000008 /* SubjectManagementViewModel.swift */,
+				771100000000000000000012 /* SubjectStudentsViewModel.swift */,
 				83F8B4AAC9EFAFBD44B07177 /* SubmitExperimentViewModel.swift */,
 				D76D3B9F1683B6FF6519215D /* UserManagementViewModel.swift */,
 				E08CE6456E4AE3BE4A0F45DD /* VerificationHistoryViewModel.swift */,
@@ -361,10 +416,15 @@
 			children = (
 				259E0FEA42EB450C567C6C1F /* AdminAnalyticsView.swift */,
 				EE1EB30E8122433818B731F2 /* AdminDashboardView.swift */,
+				771100000000000000000015 /* CreateSubjectView.swift */,
 				DB478D25A113523B203133C5 /* CreateUserView.swift */,
 				7D0C63A3CC3A8CD8C594ADA7 /* DepartmentManagementView.swift */,
+				771100000000000000000016 /* EditSubjectView.swift */,
 				95803F85A7CF6D3D6DB1FF95 /* EditUserView.swift */,
 				36B7109B0A0E375B846A9177 /* MentorAssignmentView.swift */,
+				771100000000000000000017 /* MentorSubjectAllocationView.swift */,
+				771100000000000000000018 /* StudentSubjectAllocationView.swift */,
+				771100000000000000000014 /* SubjectManagementView.swift */,
 				427BFFD335446391C8B70AFF /* UserManagementView.swift */,
 			);
 			path = "Admin";
@@ -400,7 +460,9 @@
 				16FC7DE86D0411AB66F9A396 /* MentorProgressView.swift */,
 				BD4CA74118B8D4B6A01D8311 /* MentorReviewQueueView.swift */,
 				874D8CCF576F0CF7BB01A6D5 /* MentorStudentsView.swift */,
+				771100000000000000000019 /* MentorSubjectsView.swift */,
 				D08B565D93E092DFA0BFD946 /* RejectExperimentView.swift */,
+				771100000000000000000020 /* SubjectStudentsView.swift */,
 			);
 			path = "Mentor";
 			sourceTree = "<group>";
@@ -424,6 +486,7 @@
 				FB1ECEF7258FB8238B09C3B6 /* StudentDashboardView.swift */,
 				B5E00DBC7FBDC9BA42BA8CC5 /* StudentExperimentListView.swift */,
 				5622CB90F99EBB54D54FD2C9 /* StudentProgressView.swift */,
+				771100000000000000000021 /* StudentSubjectsView.swift */,
 				983A47F6C900CFB5ECDCA75E /* StudentVerificationHistoryView.swift */,
 			);
 			path = "Student";
@@ -589,6 +652,27 @@
 				989370D152BFCAF264116559 /* AdminAnalyticsView.swift in Sources */,
 				7BB02169D40C9F380D3788EA /* PDFPreviewView.swift in Sources */,
 				C5F08F12F3C70811EEF6D2E9 /* ReportGenerationView.swift in Sources */,
+				770000000000000000000001 /* StudentSubjectAssignment.swift in Sources */,
+				770000000000000000000002 /* MentorSubjectAssignment.swift in Sources */,
+				770000000000000000000003 /* SubjectAllocationService.swift in Sources */,
+				770000000000000000000004 /* SubjectCardView.swift in Sources */,
+				770000000000000000000005 /* SubjectStudentRowView.swift in Sources */,
+				770000000000000000000006 /* MentorSelectionRow.swift in Sources */,
+				770000000000000000000007 /* StudentAllocationRow.swift in Sources */,
+				770000000000000000000008 /* SubjectManagementViewModel.swift in Sources */,
+				770000000000000000000009 /* MentorSubjectAllocationViewModel.swift in Sources */,
+				770000000000000000000010 /* StudentSubjectAllocationViewModel.swift in Sources */,
+				770000000000000000000011 /* MentorSubjectsViewModel.swift in Sources */,
+				770000000000000000000012 /* SubjectStudentsViewModel.swift in Sources */,
+				770000000000000000000013 /* StudentSubjectsViewModel.swift in Sources */,
+				770000000000000000000014 /* SubjectManagementView.swift in Sources */,
+				770000000000000000000015 /* CreateSubjectView.swift in Sources */,
+				770000000000000000000016 /* EditSubjectView.swift in Sources */,
+				770000000000000000000017 /* MentorSubjectAllocationView.swift in Sources */,
+				770000000000000000000018 /* StudentSubjectAllocationView.swift in Sources */,
+				770000000000000000000019 /* MentorSubjectsView.swift in Sources */,
+				770000000000000000000020 /* SubjectStudentsView.swift in Sources */,
+				770000000000000000000021 /* StudentSubjectsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

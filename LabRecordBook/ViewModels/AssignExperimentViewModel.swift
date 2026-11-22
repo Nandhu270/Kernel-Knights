@@ -27,9 +27,13 @@ public final class AssignExperimentViewModel {
         self.assignmentService = AssignmentService(dataStore: dataStore)
     }
     
-    /// Students supervised by this mentor
+    /// Students allocated to this mentor for this specific subject (with legacy fallback)
     public var availableStudents: [User] {
-        assignmentService.getAssignedStudents(forMentor: mentor)
+        let subjectStudents = assignmentService.getAssignedStudents(forMentor: mentor, subjectId: experiment.subjectId)
+        if !subjectStudents.isEmpty {
+            return subjectStudents
+        }
+        return assignmentService.getAssignedStudents(forMentor: mentor)
     }
     
     public var availableDepartments: [String] {

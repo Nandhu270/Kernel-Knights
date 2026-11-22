@@ -58,4 +58,20 @@ public final class StudentViewModel {
         guard let mentorId = student.assignedMentorId else { return nil }
         return dataStore.user(byId: mentorId)
     }
+    
+    /// Course subjects in which this student is actively enrolled
+    public var enrolledSubjects: [Subject] {
+        let subjectIds = Set(dataStore.studentSubjectAssignments
+            .filter { $0.studentId == student.id && $0.isActive }
+            .map { $0.subjectId })
+        return dataStore.subjects.filter { subjectIds.contains($0.id) && $0.isActive }
+    }
+    
+    /// Returns supervising mentor for a specific subject
+    public func mentor(forSubjectId subjectId: UUID) -> User? {
+        if let allocation = dataStore.activeStudentSubjectAssignment(studentId: student.id, subjectId: subjectId) {
+            return dataStore.user(byId: allocation.mentorId)
+        }
+        return assignedMentor
+    }
 }

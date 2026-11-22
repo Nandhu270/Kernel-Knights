@@ -13,16 +13,24 @@ public struct StudentExperimentListView: View {
     }
     
     public let student: User
+    public let customTitle: String?
+    public let initialSubjectId: UUID?
     @State private var viewModel: ExperimentListViewModel
     @State private var isShowingCreateSheet = false
     @State private var originFilter: OriginFilter = .all
     
-    public init(student: User) {
+    public init(student: User, title: String? = nil, initialSubjectId: UUID? = nil) {
         self.student = student
-        self._viewModel = State(initialValue: ExperimentListViewModel(
+        self.customTitle = title
+        self.initialSubjectId = initialSubjectId
+        var vm = ExperimentListViewModel(
             user: student,
             dataStore: AppDataStore(populateSampleData: false)
-        ))
+        )
+        if let subId = initialSubjectId {
+            vm.selectedSubjectId = subId
+        }
+        self._viewModel = State(initialValue: vm)
     }
     
     private var displayedExperiments: [Experiment] {
@@ -119,7 +127,7 @@ public struct StudentExperimentListView: View {
                 }
             }
         }
-        .navigationTitle("My Experiments")
+        .navigationTitle(customTitle ?? "My Experiments")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -137,6 +145,9 @@ public struct StudentExperimentListView: View {
         }
         .onAppear {
             viewModel = ExperimentListViewModel(user: student, dataStore: dataStore)
+            if let subId = initialSubjectId {
+                viewModel.selectedSubjectId = subId
+            }
         }
         .sheet(isPresented: $isShowingCreateSheet) {
             CreateExperimentView(student: student)

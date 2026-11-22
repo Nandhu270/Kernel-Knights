@@ -83,11 +83,23 @@ public final class AssignmentService {
     /// Returns all students assigned to a specific mentor.
     public func getAssignedStudents(forMentor mentor: User) -> [User] {
         guard mentor.role == .mentor else { return [] }
-        return dataStore.users.filter {
-            $0.role == .student &&
-            $0.assignedMentorId == mentor.id &&
-            $0.isActive
-        }
+        let subjectAllocatedStudentIds = Set(dataStore.studentSubjectAssignments
+            .filter { $0.mentorId == mentor.id && $0.isActive }
+            .map { $0.studentId })
+        let legacyStudentIds = Set(dataStore.users
+            .filter { $0.role == .student && $0.assignedMentorId == mentor.id && $0.isActive }
+            .map { $0.id })
+        let allIds = subjectAllocatedStudentIds.union(legacyStudentIds)
+        return dataStore.users.filter { allIds.contains($0.id) && $0.isActive }
+    }
+    
+    /// Returns all students actively allocated to a specific mentor for a specific course subject.
+    public func getAssignedStudents(forMentor mentor: User, subjectId: UUID) -> [User] {
+        guard mentor.role == .mentor else { return [] }
+        let allocatedStudentIds = Set(dataStore.studentSubjectAssignments
+            .filter { $0.mentorId == mentor.id && $0.subjectId == subjectId && $0.isActive }
+            .map { $0.studentId })
+        return dataStore.users.filter { allocatedStudentIds.contains($0.id) && $0.isActive }
     }
     
     /// Returns assignment by id
@@ -163,14 +175,14 @@ public final class AssignmentService {
             throw AssignmentServiceError.unauthorized
         }
         
-        // Verify all target students are actively assigned to this mentor
+        // Verify all target students are actively assigned to this mentor (subject allocation preferred, with legacy fallback)
         for studentId in studentIds {
-            guard mentor.assignedStudentIds.contains(studentId) else {
+            let isSubjectAllocated = dataStore.activeStudentSubjectAssignment(studentId: studentId, subjectId: template.subjectId)?.mentorId == mentor.id
+            let isLegacyAssigned = mentor.assignedStudentIds.contains(studentId)
+            guard isSubjectAllocated || isLegacyAssigned else {
                 throw AssignmentServiceError.studentNotAssignedToMentor
             }
-            guard let student = dataStore.user(byId: studentId),
-                  student.assignedMentorId == mentor.id,
-                  student.isActive else {
+            guard let student = dataStore.user(byId: studentId), student.isActive else {
                 throw AssignmentServiceError.studentNotAssignedToMentor
             }
         }

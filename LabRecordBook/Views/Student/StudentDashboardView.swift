@@ -185,6 +185,17 @@ public struct StudentDashboardView: View {
                                 }
                                 .buttonStyle(.plain)
                                 
+                                // 2. My Enrolled Subjects (Phase 7)
+                                NavigationLink(destination: StudentSubjectsView(student: s)) {
+                                    navRowContent(
+                                        title: "My Enrolled Subjects",
+                                        subtitle: "\(viewModel?.enrolledSubjects.count ?? 0) subjects • View mentors & course progress",
+                                        icon: "book.closed.fill",
+                                        color: .teal
+                                    )
+                                }
+                                .buttonStyle(.plain)
+                                
                                 // 2. My Lab Analytics (Phase 6)
                                 NavigationLink(destination: StudentProgressView(student: s)) {
                                     navRowContent(

@@ -94,9 +94,12 @@ public final class VerificationService {
             throw VerificationError.invalidStatusForReview
         }
         
-        // Mentor must supervise this student
+        // Mentor must supervise this student (subject-specific allocation is source of truth, with legacy/direct fallback)
+        let isSubjectMentor = experiment.studentId.map {
+            dataStore.activeStudentSubjectAssignment(studentId: $0, subjectId: experiment.subjectId)?.mentorId == mentor.id
+        } ?? false
         let belongsToAssignedStudent = experiment.studentId.map { mentor.assignedStudentIds.contains($0) } ?? false
-        guard belongsToAssignedStudent || experiment.mentorId == mentor.id else {
+        guard isSubjectMentor || belongsToAssignedStudent || experiment.mentorId == mentor.id else {
             throw VerificationError.studentNotAssignedToMentor
         }
         
@@ -157,9 +160,12 @@ public final class VerificationService {
             throw VerificationError.invalidStatusForReview
         }
         
-        // Mentor must supervise this student
+        // Mentor must supervise this student (subject-specific allocation is source of truth, with legacy/direct fallback)
+        let isSubjectMentor = experiment.studentId.map {
+            dataStore.activeStudentSubjectAssignment(studentId: $0, subjectId: experiment.subjectId)?.mentorId == mentor.id
+        } ?? false
         let belongsToAssignedStudent = experiment.studentId.map { mentor.assignedStudentIds.contains($0) } ?? false
-        guard belongsToAssignedStudent || experiment.mentorId == mentor.id else {
+        guard isSubjectMentor || belongsToAssignedStudent || experiment.mentorId == mentor.id else {
             throw VerificationError.studentNotAssignedToMentor
         }
         

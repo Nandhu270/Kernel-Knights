@@ -164,7 +164,18 @@ public struct AdminDashboardView: View {
                             }
                             .buttonStyle(.plain)
                             
-                            // 5. Department Management
+                            // 5. Subject Management & Allocations (Phase 7)
+                            NavigationLink(destination: SubjectManagementView()) {
+                                navCardContent(
+                                    title: "Subject Management & Allocations",
+                                    subtitle: "Manage course subjects, mentor assignments & student enrollments",
+                                    icon: "book.pages.fill",
+                                    color: .teal
+                                )
+                            }
+                            .buttonStyle(.plain)
+                            
+                            // 6. Department Management
                             NavigationLink(destination: DepartmentManagementView()) {
                                 navCardContent(
                                     title: "Department Management",

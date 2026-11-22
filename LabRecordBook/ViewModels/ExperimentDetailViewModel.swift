@@ -39,8 +39,14 @@ public final class ExperimentDetailViewModel {
     }
     
     public var mentor: User? {
-        guard let exp = experiment, let mentorId = exp.mentorId else { return nil }
-        return dataStore.user(byId: mentorId)
+        guard let exp = experiment else { return nil }
+        if let mentorId = exp.mentorId {
+            return dataStore.user(byId: mentorId)
+        }
+        if let sid = exp.studentId, let allocation = dataStore.activeStudentSubjectAssignment(studentId: sid, subjectId: exp.subjectId) {
+            return dataStore.user(byId: allocation.mentorId)
+        }
+        return nil
     }
     
     public var assignment: Assignment? {
@@ -70,8 +76,11 @@ public final class ExperimentDetailViewModel {
     
     public var canMentorReview: Bool {
         guard let exp = experiment, currentUser.role == .mentor else { return false }
+        let isSubjectMentor = exp.studentId.map {
+            dataStore.activeStudentSubjectAssignment(studentId: $0, subjectId: exp.subjectId)?.mentorId == currentUser.id
+        } ?? false
         let isSupervising = exp.studentId.map { currentUser.assignedStudentIds.contains($0) } ?? false
-        return exp.status == .submitted && (isSupervising || exp.mentorId == currentUser.id)
+        return exp.status == .submitted && (isSubjectMentor || isSupervising || exp.mentorId == currentUser.id)
     }
     
     public func submitExperiment() -> Bool {

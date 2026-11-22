@@ -244,13 +244,19 @@ public final class AnalyticsService {
         return (Double(verifiedCount) / Double(experiments.count)) * 100.0
     }
     
-    /// Calculates subject-wise progress breakdown for a student
+    /// Calculates subject-wise progress breakdown for a student.
+    /// Includes all subjects the student is actively allocated to, plus any subjects with historical experiments.
     public func getSubjectProgress(for studentId: UUID) -> [SubjectProgress] {
         let studentExps = getStudentExperiments(for: studentId)
+        let activeSubjectIds = Set(dataStore.studentSubjectAssignments
+            .filter { $0.studentId == studentId && $0.isActive }
+            .map { $0.subjectId })
+        let experimentSubjectIds = Set(studentExps.map { $0.subjectId })
+        let relevantSubjectIds = activeSubjectIds.union(experimentSubjectIds)
         
         return dataStore.subjects.compactMap { subject in
+            guard relevantSubjectIds.contains(subject.id) else { return nil }
             let expsForSubj = studentExps.filter { $0.subjectId == subject.id }
-            guard !expsForSubj.isEmpty else { return nil }
             
             let verified = expsForSubj.filter { $0.status == .verified }.count
             let rejected = expsForSubj.filter { $0.status == .rejected }.count
@@ -266,11 +272,65 @@ public final class AnalyticsService {
         }
     }
     
+    /// Returns all active subjects a student is enrolled in under an active mentor.
+    public func getEnrolledSubjects(for studentId: UUID) -> [Subject] {
+        let activeSubjectIds = Set(dataStore.studentSubjectAssignments
+            .filter { $0.studentId == studentId && $0.isActive }
+            .map { $0.subjectId })
+        return dataStore.subjects.filter { activeSubjectIds.contains($0.id) && $0.isActive }
+    }
+    
     // MARK: - Mentor Analytics
     
-    /// Students supervised by the mentor (only active students)
+    /// Students supervised by the mentor (both subject-allocated and legacy active students)
     public func getAssignedStudents(for mentorId: UUID) -> [User] {
-        dataStore.users.filter { $0.role == .student && $0.assignedMentorId == mentorId && $0.isActive }
+        let subjectAllocatedIds = Set(dataStore.studentSubjectAssignments
+            .filter { $0.mentorId == mentorId && $0.isActive }
+            .map { $0.studentId })
+        let legacyIds = Set(dataStore.users
+            .filter { $0.role == .student && $0.assignedMentorId == mentorId && $0.isActive }
+            .map { $0.id })
+        let allIds = subjectAllocatedIds.union(legacyIds)
+        return dataStore.users.filter { allIds.contains($0.id) && $0.isActive }
+    }
+    
+    /// Returns all active subjects taught by this mentor
+    public func getMentoredSubjects(for mentorId: UUID) -> [Subject] {
+        let subjectIds = Set(dataStore.mentorSubjectAssignments
+            .filter { $0.mentorId == mentorId && $0.isActive }
+            .map { $0.subjectId })
+        return dataStore.subjects.filter { subjectIds.contains($0.id) && $0.isActive }
+    }
+    
+    /// Student progress summaries for all students allocated to this mentor in a specific subject
+    public func getSubjectStudentProgress(forMentorId mentorId: UUID, subjectId: UUID) -> [StudentProgressSummary] {
+        let allocatedStudentIds = Set(dataStore.studentSubjectAssignments
+            .filter { $0.mentorId == mentorId && $0.subjectId == subjectId && $0.isActive }
+            .map { $0.studentId })
+        let students = dataStore.users.filter { allocatedStudentIds.contains($0.id) && $0.isActive }
+        
+        return students.map { student in
+            let exps = getStudentExperiments(for: student.id).filter { $0.subjectId == subjectId }
+            let verified = exps.filter { $0.status == .verified }.count
+            let rejected = exps.filter { $0.status == .rejected }.count
+            let pending = exps.filter { $0.status != .verified && $0.status != .rejected }.count
+            
+            return StudentProgressSummary(
+                student: student,
+                totalAssigned: exps.count,
+                verifiedCount: verified,
+                pendingCount: pending,
+                rejectedCount: rejected
+            )
+        }
+    }
+    
+    /// Completion percentage for a given subject across all student experiments
+    public func getSubjectCompletionPercentage(subjectId: UUID) -> Double {
+        let exps = totalStudentExperiments.filter { $0.subjectId == subjectId }
+        guard !exps.isEmpty else { return 0.0 }
+        let verified = exps.filter { $0.status == .verified }.count
+        return (Double(verified) / Double(exps.count)) * 100.0
     }
     
     /// Student progress summaries for all students assigned to a mentor

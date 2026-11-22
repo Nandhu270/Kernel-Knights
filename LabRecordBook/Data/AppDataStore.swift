@@ -13,6 +13,8 @@ public final class AppDataStore {
     public var experiments: [Experiment] = []
     public var assignments: [Assignment] = []
     public var verifications: [Verification] = []
+    public var mentorSubjectAssignments: [MentorSubjectAssignment] = []
+    public var studentSubjectAssignments: [StudentSubjectAssignment] = []
     
     public init(populateSampleData: Bool = true) {
         if populateSampleData {
@@ -28,6 +30,8 @@ public final class AppDataStore {
         self.experiments = SampleData.experiments
         self.assignments = SampleData.assignments
         self.verifications = SampleData.verifications
+        self.mentorSubjectAssignments = SampleData.mentorSubjectAssignments
+        self.studentSubjectAssignments = SampleData.studentSubjectAssignments
     }
     
     // MARK: - Query Helpers
@@ -55,5 +59,31 @@ public final class AppDataStore {
     public func verifications(forExperimentId expId: UUID) -> [Verification] {
         verifications.filter { $0.experimentId == expId }
             .sorted { $0.timestamp > $1.timestamp }
+    }
+    
+    // MARK: - Subject Allocation Queries
+    
+    public func activeMentorSubjectAssignments(forSubjectId subjectId: UUID) -> [MentorSubjectAssignment] {
+        mentorSubjectAssignments.filter { $0.subjectId == subjectId && $0.isActive }
+    }
+    
+    public func activeMentorSubjectAssignments(forMentorId mentorId: UUID) -> [MentorSubjectAssignment] {
+        mentorSubjectAssignments.filter { $0.mentorId == mentorId && $0.isActive }
+    }
+    
+    public func activeStudentSubjectAssignment(studentId: UUID, subjectId: UUID) -> StudentSubjectAssignment? {
+        studentSubjectAssignments.first { $0.studentId == studentId && $0.subjectId == subjectId && $0.isActive }
+    }
+    
+    public func activeStudentSubjectAssignments(forStudentId studentId: UUID) -> [StudentSubjectAssignment] {
+        studentSubjectAssignments.filter { $0.studentId == studentId && $0.isActive }
+    }
+    
+    public func activeStudentSubjectAssignments(forMentorId mentorId: UUID) -> [StudentSubjectAssignment] {
+        studentSubjectAssignments.filter { $0.mentorId == mentorId && $0.isActive }
+    }
+    
+    public func activeStudentSubjectAssignments(forMentorId mentorId: UUID, subjectId: UUID) -> [StudentSubjectAssignment] {
+        studentSubjectAssignments.filter { $0.mentorId == mentorId && $0.subjectId == subjectId && $0.isActive }
     }
 }

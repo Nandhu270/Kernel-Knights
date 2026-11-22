@@ -117,25 +117,33 @@ public enum SampleData {
                 id: subjectDSAId,
                 name: "Data Structures & Algorithms",
                 code: "CS201",
-                description: "Fundamental data structures, stacks, queues, trees, sorting, and graph algorithms."
+                description: "Fundamental data structures, stacks, queues, trees, sorting, and graph algorithms.",
+                department: "Computer Science & Engineering",
+                isActive: true
             ),
             Subject(
                 id: subjectDBMSId,
                 name: "Database Management Systems",
                 code: "CS301",
-                description: "Relational database modeling, SQL queries, normalization, indexing, and transactions."
+                description: "Relational database modeling, SQL queries, normalization, indexing, and transactions.",
+                department: "Computer Science & Engineering",
+                isActive: true
             ),
             Subject(
                 id: subjectOSId,
                 name: "Operating Systems",
                 code: "CS302",
-                description: "Process scheduling, thread synchronization, deadlocks, and virtual memory management."
+                description: "Process scheduling, thread synchronization, deadlocks, and virtual memory management.",
+                department: "Computer Science & Engineering",
+                isActive: true
             ),
             Subject(
                 id: subjectCNId,
                 name: "Computer Networks",
                 code: "CS303",
-                description: "OSI stack, TCP/IP protocol suite, routing protocols, and socket programming."
+                description: "OSI stack, TCP/IP protocol suite, routing protocols, and socket programming.",
+                department: "Computer Science & Engineering",
+                isActive: true
             )
         ]
     }
@@ -280,6 +288,146 @@ public enum SampleData {
                 status: .rejected,
                 comments: "Missing foreign key definitions on CourseEnrollment table. Please update schema and resubmit.",
                 timestamp: twoDaysAgo
+            )
+        ]
+    }
+    
+    // MARK: - Predefined Subject Allocations (Phase 7)
+    
+    public static var mentorSubjectAssignments: [MentorSubjectAssignment] {
+        let calendar = Calendar.current
+        let today = Date()
+        let twoWeeksAgo = calendar.date(byAdding: .day, value: -14, to: today) ?? today
+        
+        return [
+            // Dr. Robert Smith
+            MentorSubjectAssignment(
+                id: UUID(uuidString: "fa111111-1111-1111-1111-111111111111")!,
+                mentorId: mentor1Id,
+                subjectId: subjectDSAId,
+                assignedDate: twoWeeksAgo,
+                isActive: true
+            ),
+            MentorSubjectAssignment(
+                id: UUID(uuidString: "fa222222-2222-2222-2222-222222222222")!,
+                mentorId: mentor1Id,
+                subjectId: subjectDBMSId,
+                assignedDate: twoWeeksAgo,
+                isActive: true
+            ),
+            MentorSubjectAssignment(
+                id: UUID(uuidString: "fa333333-3333-3333-3333-333333333333")!,
+                mentorId: mentor1Id,
+                subjectId: subjectOSId,
+                assignedDate: twoWeeksAgo,
+                isActive: true
+            ),
+            MentorSubjectAssignment(
+                id: UUID(uuidString: "fa444444-4444-4444-4444-444444444444")!,
+                mentorId: mentor1Id,
+                subjectId: subjectCNId,
+                assignedDate: twoWeeksAgo,
+                isActive: true
+            ),
+            // Prof. Alan Turing
+            MentorSubjectAssignment(
+                id: UUID(uuidString: "fa555555-5555-5555-5555-555555555555")!,
+                mentorId: mentor2Id,
+                subjectId: subjectDSAId,
+                assignedDate: twoWeeksAgo,
+                isActive: true
+            ),
+            MentorSubjectAssignment(
+                id: UUID(uuidString: "fa666666-6666-6666-6666-666666666666")!,
+                mentorId: mentor2Id,
+                subjectId: subjectDBMSId,
+                assignedDate: twoWeeksAgo,
+                isActive: true
+            ),
+            MentorSubjectAssignment(
+                id: UUID(uuidString: "fa777777-7777-7777-7777-777777777777")!,
+                mentorId: mentor2Id,
+                subjectId: subjectCNId,
+                assignedDate: twoWeeksAgo,
+                isActive: true
+            )
+        ]
+    }
+    
+    public static var studentSubjectAssignments: [StudentSubjectAssignment] {
+        let calendar = Calendar.current
+        let today = Date()
+        let twoWeeksAgo = calendar.date(byAdding: .day, value: -14, to: today) ?? today
+        
+        return [
+            // John Doe (student1Id)
+            StudentSubjectAssignment(
+                id: UUID(uuidString: "sa111111-1111-1111-1111-111111111111")!,
+                studentId: student1Id,
+                subjectId: subjectDSAId,
+                mentorId: mentor1Id,
+                assignedDate: twoWeeksAgo,
+                isActive: true
+            ),
+            StudentSubjectAssignment(
+                id: UUID(uuidString: "sa222222-2222-2222-2222-222222222222")!,
+                studentId: student1Id,
+                subjectId: subjectDBMSId,
+                mentorId: mentor1Id,
+                assignedDate: twoWeeksAgo,
+                isActive: true
+            ),
+            StudentSubjectAssignment(
+                id: UUID(uuidString: "sa333333-3333-3333-3333-333333333333")!,
+                studentId: student1Id,
+                subjectId: subjectOSId,
+                mentorId: mentor1Id,
+                assignedDate: twoWeeksAgo,
+                isActive: true
+            ),
+            
+            // Jane Smith (student2Id) - supervised by Dr. Smith for OS & CN, and Prof. Turing for DSA
+            StudentSubjectAssignment(
+                id: UUID(uuidString: "sa444444-4444-4444-4444-444444444444")!,
+                studentId: student2Id,
+                subjectId: subjectDSAId,
+                mentorId: mentor2Id,
+                assignedDate: twoWeeksAgo,
+                isActive: true
+            ),
+            StudentSubjectAssignment(
+                id: UUID(uuidString: "sa555555-5555-5555-5555-555555555555")!,
+                studentId: student2Id,
+                subjectId: subjectOSId,
+                mentorId: mentor1Id,
+                assignedDate: twoWeeksAgo,
+                isActive: true
+            ),
+            StudentSubjectAssignment(
+                id: UUID(uuidString: "sa666666-6666-6666-6666-666666666666")!,
+                studentId: student2Id,
+                subjectId: subjectCNId,
+                mentorId: mentor1Id,
+                assignedDate: twoWeeksAgo,
+                isActive: true
+            ),
+            
+            // Alex Jones (student3Id) - supervised by Prof. Turing
+            StudentSubjectAssignment(
+                id: UUID(uuidString: "sa777777-7777-7777-7777-777777777777")!,
+                studentId: student3Id,
+                subjectId: subjectDBMSId,
+                mentorId: mentor2Id,
+                assignedDate: twoWeeksAgo,
+                isActive: true
+            ),
+            StudentSubjectAssignment(
+                id: UUID(uuidString: "sa888888-8888-8888-8888-888888888888")!,
+                studentId: student3Id,
+                subjectId: subjectCNId,
+                mentorId: mentor2Id,
+                assignedDate: twoWeeksAgo,
+                isActive: true
             )
         ]
     }

@@ -10,6 +10,7 @@ public enum ExperimentServiceError: LocalizedError {
     case cannotDeleteLockedExperiment
     case invalidStatusTransition
     case missingAssignedMentor
+    case missingSubjectAllocation
     case incompleteSubmission(String)
     case alreadySubmitted
     case alreadyVerified
@@ -32,6 +33,8 @@ public enum ExperimentServiceError: LocalizedError {
             return "This experiment cannot be submitted in its current status."
         case .missingAssignedMentor:
             return "You cannot submit an experiment without an assigned supervising mentor. Please contact your administrator."
+        case .missingSubjectAllocation:
+            return "You are not enrolled in this course subject under an active supervising mentor. Experiment submission requires an active subject allocation."
         case .incompleteSubmission(let reason):
             return reason
         case .alreadySubmitted:
@@ -83,15 +86,23 @@ public final class ExperimentService {
     }
     
     public func getExperiments(forMentorId mentorId: UUID) -> [Experiment] {
-        // Find students assigned to this mentor
-        let assignedStudentIds = dataStore.users
+        // Find students with active subject allocations under this mentor
+        let subjectAllocatedStudentIds = Set(dataStore.studentSubjectAssignments
+            .filter { $0.mentorId == mentorId && $0.isActive }
+            .map { $0.studentId })
+        
+        // Legacy assigned students
+        let legacyAssignedStudentIds = Set(dataStore.users
             .filter { $0.role == .student && $0.assignedMentorId == mentorId }
-            .map { $0.id }
+            .map { $0.id })
+        
+        let allAssignedStudentIds = subjectAllocatedStudentIds.union(legacyAssignedStudentIds)
         
         return dataStore.experiments
             .filter {
                 if let sid = $0.studentId {
-                    return assignedStudentIds.contains(sid) || $0.mentorId == mentorId
+                    let isSubjectMentor = dataStore.activeStudentSubjectAssignment(studentId: sid, subjectId: $0.subjectId)?.mentorId == mentorId
+                    return $0.mentorId == mentorId || isSubjectMentor || allAssignedStudentIds.contains(sid)
                 } else {
                     return $0.mentorId == mentorId
                 }
@@ -99,6 +110,11 @@ public final class ExperimentService {
             .sorted {
                 $0.experimentNumber.localizedStandardCompare($1.experimentNumber) == .orderedAscending
             }
+    }
+    
+    /// Returns experiments for a mentor filtered by subject
+    public func getExperiments(forMentorId mentorId: UUID, subjectId: UUID) -> [Experiment] {
+        getExperiments(forMentorId: mentorId).filter { $0.subjectId == subjectId }
     }
     
     /// Returns master template experiments created by the mentor for assignment
@@ -236,10 +252,19 @@ public final class ExperimentService {
             throw ExperimentServiceError.duplicateExperimentNumber
         }
         
-        // Look up student's mentor if not provided
-        var effectiveMentorId = mentorId
-        if effectiveMentorId == nil {
-            effectiveMentorId = dataStore.user(byId: studentId)?.assignedMentorId
+        // Look up student's mentor: StudentSubjectAssignment is the source of truth
+        var effectiveMentorId: UUID? = nil
+        if let allocation = dataStore.activeStudentSubjectAssignment(studentId: studentId, subjectId: subjectId), allocation.isActive {
+            effectiveMentorId = allocation.mentorId
+        } else if isAssignedByMentor, let explicitMentorId = mentorId {
+            effectiveMentorId = explicitMentorId
+        } else if let explicitMentorId = mentorId {
+            effectiveMentorId = explicitMentorId
+        } else if let legacyMentorId = dataStore.user(byId: studentId)?.assignedMentorId {
+            // Backward-compatible fallback for legacy unallocated experiments
+            effectiveMentorId = legacyMentorId
+        } else {
+            throw ExperimentServiceError.missingSubjectAllocation
         }
         
         let newExp = Experiment(
@@ -449,22 +474,22 @@ public final class ExperimentService {
             throw ExperimentServiceError.incompleteSubmission("Experiment results cannot be empty. Please record experimental results before submitting.")
         }
         
-        // Verify student has an assigned active mentor
-        guard let student = dataStore.user(byId: studentId),
-              let mentorId = student.assignedMentorId,
-              let mentor = dataStore.user(byId: mentorId),
-              mentor.isActive else {
-            throw ExperimentServiceError.missingAssignedMentor
-        }
-        
-        // Verify mentor still supervises this student
-        guard mentor.assignedStudentIds.contains(studentId) else {
-            throw ExperimentServiceError.missingAssignedMentor
+        // Source of truth: Active StudentSubjectAssignment for this subject
+        var effectiveMentorId: UUID? = nil
+        if let allocation = dataStore.activeStudentSubjectAssignment(studentId: studentId, subjectId: existing.subjectId),
+           allocation.isActive {
+            guard let mentor = dataStore.user(byId: allocation.mentorId), mentor.isActive else {
+                throw ExperimentServiceError.missingAssignedMentor
+            }
+            effectiveMentorId = allocation.mentorId
+        } else {
+            // Do NOT silently fall back to User.assignedMentorId when subject allocation is missing!
+            throw ExperimentServiceError.missingSubjectAllocation
         }
         
         var updated = existing
         updated.status = .submitted
-        updated.mentorId = mentorId
+        updated.mentorId = effectiveMentorId
         updated.lastUpdated = Date()
         
         dataStore.experiments[index] = updated

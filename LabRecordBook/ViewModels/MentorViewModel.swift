@@ -20,9 +20,24 @@ public final class MentorViewModel {
     
     // MARK: - Phase 5 Mentorship Metrics (Calculated dynamically from AppDataStore)
     
-    /// Students currently assigned to this mentor
+    /// Students currently assigned to this mentor (subject allocations + legacy)
     public var assignedStudents: [User] {
-        dataStore.users.filter { $0.role == .student && $0.assignedMentorId == mentor.id && $0.isActive }
+        let subjectAllocatedIds = Set(dataStore.studentSubjectAssignments
+            .filter { $0.mentorId == mentor.id && $0.isActive }
+            .map { $0.studentId })
+        let legacyIds = Set(dataStore.users
+            .filter { $0.role == .student && $0.assignedMentorId == mentor.id && $0.isActive }
+            .map { $0.id })
+        let allIds = subjectAllocatedIds.union(legacyIds)
+        return dataStore.users.filter { allIds.contains($0.id) && $0.isActive }
+    }
+    
+    /// Course subjects taught by this mentor
+    public var mySubjects: [Subject] {
+        let subjectIds = Set(dataStore.mentorSubjectAssignments
+            .filter { $0.mentorId == mentor.id && $0.isActive }
+            .map { $0.subjectId })
+        return dataStore.subjects.filter { subjectIds.contains($0.id) && $0.isActive }
     }
     
     public var assignedStudentsCount: Int {

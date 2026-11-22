@@ -35,7 +35,11 @@ public final class CreateMentorExperimentViewModel {
     }
     
     public var availableSubjects: [Subject] {
-        dataStore.subjects
+        let mentored = dataStore.mentorSubjectAssignments
+            .filter { $0.mentorId == mentor.id && $0.isActive }
+            .compactMap { dataStore.subject(byId: $0.subjectId) }
+            .filter { $0.isActive }
+        return mentored.isEmpty ? dataStore.subjects.filter { $0.isActive } : mentored
     }
     
     public var isFormValid: Bool {

@@ -193,13 +193,24 @@ public struct MentorDashboardView: View {
                                 }
                                 .buttonStyle(.plain)
                                 
-                                // 4. My Students
+                                // 4. My Course Subjects (Phase 7)
+                                NavigationLink(destination: MentorSubjectsView(mentor: m)) {
+                                    mentorNavRowContent(
+                                        title: "My Course Subjects",
+                                        subtitle: "\(viewModel?.mySubjects.count ?? 0) subjects taught • View subject-wise student cohorts",
+                                        icon: "book.closed.fill",
+                                        color: .blue
+                                    )
+                                }
+                                .buttonStyle(.plain)
+                                
+                                // 5. My Students
                                 NavigationLink(destination: MentorStudentsView(mentor: m)) {
                                     mentorNavRowContent(
                                         title: "My Students",
                                         subtitle: "\(viewModel?.assignedStudentsCount ?? 0) students under your supervision",
                                         icon: "person.2.fill",
-                                        color: .blue
+                                        color: .indigo
                                     )
                                 }
                                 .buttonStyle(.plain)

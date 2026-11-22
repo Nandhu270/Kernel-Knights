@@ -27,12 +27,20 @@ public final class CreateExperimentViewModel {
         let nextCount = dataStore.experiments.filter { $0.studentId == student.id }.count + 1
         self.experimentNumber = String(format: "EXP-%02d", nextCount)
         
-        // Default to first available subject if present
-        self.selectedSubjectId = dataStore.subjects.first?.id
+        // Default to first enrolled subject if present
+        let enrolled = dataStore.studentSubjectAssignments
+            .filter { $0.studentId == student.id && $0.isActive }
+            .compactMap { dataStore.subject(byId: $0.subjectId) }
+            .filter { $0.isActive }
+        self.selectedSubjectId = enrolled.first?.id ?? dataStore.subjects.first?.id
     }
     
     public var availableSubjects: [Subject] {
-        dataStore.subjects
+        let enrolled = dataStore.studentSubjectAssignments
+            .filter { $0.studentId == student.id && $0.isActive }
+            .compactMap { dataStore.subject(byId: $0.subjectId) }
+            .filter { $0.isActive }
+        return enrolled.isEmpty ? dataStore.subjects.filter { $0.isActive } : enrolled
     }
     
     public func validate() -> String? {
