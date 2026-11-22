@@ -336,7 +336,7 @@ public struct StudentDashboardView: View {
 #Preview {
     let store = AppDataStore()
     let authService = AuthService(dataStore: store)
-    try? authService.login(username: "john.doe", password: "student123")
+    _ = try? authService.login(username: "john.doe", password: "student123")
     return StudentDashboardView()
         .environment(store)
         .environment(authService)

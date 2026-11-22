@@ -344,7 +344,7 @@ public struct MentorDashboardView: View {
 #Preview {
     let store = AppDataStore()
     let authService = AuthService(dataStore: store)
-    try? authService.login(username: "dr.smith", password: "mentor123")
+    _ = try? authService.login(username: "dr.smith", password: "mentor123")
     return MentorDashboardView()
         .environment(store)
         .environment(authService)

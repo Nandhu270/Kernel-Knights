@@ -325,7 +325,7 @@ public struct AdminDashboardView: View {
 #Preview {
     let store = AppDataStore()
     let authService = AuthService(dataStore: store)
-    try? authService.login(username: "admin", password: "admin123")
+    _ = try? authService.login(username: "admin", password: "admin123")
     return AdminDashboardView()
         .environment(store)
         .environment(authService)

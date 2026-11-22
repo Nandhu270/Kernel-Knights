@@ -39,7 +39,7 @@ public struct AppCoordinator: View {
 #Preview("Coordinator - Admin Dashboard") {
     let store = AppDataStore()
     let auth = AuthService(dataStore: store)
-    try? auth.login(username: "admin", password: "admin123")
+    _ = try? auth.login(username: "admin", password: "admin123")
     return AppCoordinator()
         .environment(store)
         .environment(auth)
@@ -48,7 +48,7 @@ public struct AppCoordinator: View {
 #Preview("Coordinator - Student Dashboard") {
     let store = AppDataStore()
     let auth = AuthService(dataStore: store)
-    try? auth.login(username: "john.doe", password: "student123")
+    _ = try? auth.login(username: "john.doe", password: "student123")
     return AppCoordinator()
         .environment(store)
         .environment(auth)
@@ -57,7 +57,7 @@ public struct AppCoordinator: View {
 #Preview("Coordinator - Mentor Dashboard") {
     let store = AppDataStore()
     let auth = AuthService(dataStore: store)
-    try? auth.login(username: "dr.smith", password: "mentor123")
+    _ = try? auth.login(username: "dr.smith", password: "mentor123")
     return AppCoordinator()
         .environment(store)
         .environment(auth)
