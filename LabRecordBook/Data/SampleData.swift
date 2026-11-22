@@ -362,7 +362,7 @@ public enum SampleData {
         return [
             // John Doe (student1Id)
             StudentSubjectAssignment(
-                id: UUID(uuidString: "sa111111-1111-1111-1111-111111111111")!,
+                id: UUID(uuidString: "ba111111-1111-1111-1111-111111111111")!,
                 studentId: student1Id,
                 subjectId: subjectDSAId,
                 mentorId: mentor1Id,
@@ -370,7 +370,7 @@ public enum SampleData {
                 isActive: true
             ),
             StudentSubjectAssignment(
-                id: UUID(uuidString: "sa222222-2222-2222-2222-222222222222")!,
+                id: UUID(uuidString: "ba222222-2222-2222-2222-222222222222")!,
                 studentId: student1Id,
                 subjectId: subjectDBMSId,
                 mentorId: mentor1Id,
@@ -378,7 +378,7 @@ public enum SampleData {
                 isActive: true
             ),
             StudentSubjectAssignment(
-                id: UUID(uuidString: "sa333333-3333-3333-3333-333333333333")!,
+                id: UUID(uuidString: "ba333333-3333-3333-3333-333333333333")!,
                 studentId: student1Id,
                 subjectId: subjectOSId,
                 mentorId: mentor1Id,
@@ -388,7 +388,7 @@ public enum SampleData {
             
             // Jane Smith (student2Id) - supervised by Dr. Smith for OS & CN, and Prof. Turing for DSA
             StudentSubjectAssignment(
-                id: UUID(uuidString: "sa444444-4444-4444-4444-444444444444")!,
+                id: UUID(uuidString: "ba444444-4444-4444-4444-444444444444")!,
                 studentId: student2Id,
                 subjectId: subjectDSAId,
                 mentorId: mentor2Id,
@@ -396,7 +396,7 @@ public enum SampleData {
                 isActive: true
             ),
             StudentSubjectAssignment(
-                id: UUID(uuidString: "sa555555-5555-5555-5555-555555555555")!,
+                id: UUID(uuidString: "ba555555-5555-5555-5555-555555555555")!,
                 studentId: student2Id,
                 subjectId: subjectOSId,
                 mentorId: mentor1Id,
@@ -404,7 +404,7 @@ public enum SampleData {
                 isActive: true
             ),
             StudentSubjectAssignment(
-                id: UUID(uuidString: "sa666666-6666-6666-6666-666666666666")!,
+                id: UUID(uuidString: "ba666666-6666-6666-6666-666666666666")!,
                 studentId: student2Id,
                 subjectId: subjectCNId,
                 mentorId: mentor1Id,
@@ -414,7 +414,7 @@ public enum SampleData {
             
             // Alex Jones (student3Id) - supervised by Prof. Turing
             StudentSubjectAssignment(
-                id: UUID(uuidString: "sa777777-7777-7777-7777-777777777777")!,
+                id: UUID(uuidString: "ba777777-7777-7777-7777-777777777777")!,
                 studentId: student3Id,
                 subjectId: subjectDBMSId,
                 mentorId: mentor2Id,
@@ -422,7 +422,7 @@ public enum SampleData {
                 isActive: true
             ),
             StudentSubjectAssignment(
-                id: UUID(uuidString: "sa888888-8888-8888-8888-888888888888")!,
+                id: UUID(uuidString: "ba888888-8888-8888-8888-888888888888")!,
                 studentId: student3Id,
                 subjectId: subjectCNId,
                 mentorId: mentor2Id,
